@@ -8,11 +8,9 @@ An app that can calculate cash flow among roommates.
 1. First, make sure you have Node.js installed. To install Node.js, go to: https://nodejs.org/en/
 
 2. Then to install Cordova, run the following code in Terminal:
-
 ```
   $ sudo npm install -g cordova 
 ```
-
 3. To install Ionic, simply run:
 ```
   $ sudo npm install -g ionic
