@@ -17,5 +17,5 @@ An app that can calculate cash flow among roommates.
 ```
 Now, you are ready to creat your own project on Mac.
 
-## For windows:
+## For windows: 
 
