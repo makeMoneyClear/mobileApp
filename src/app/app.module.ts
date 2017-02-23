@@ -5,13 +5,8 @@ import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
-import { CouldSettings } from '@ionic/cloud-angular';
 
-const cloudSettings: CloudSettings = {
-  'core': {
-    'app_id': '08f911e4'
-  }
-};
+
 
 @NgModule({
   declarations: [
@@ -22,8 +17,7 @@ const cloudSettings: CloudSettings = {
     TabsPage
   ],
   imports: [
-    IonicModule.forRoot(MyApp),
-	CloudModule.forRoot(cloudSettings)
+    IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
