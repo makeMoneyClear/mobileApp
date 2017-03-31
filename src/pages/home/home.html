@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Payment Information</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h2>Build new payment</h2>
+
+  <ion-list>
+
+  <ion-item>
+    <ion-label color = "dark">Tittle:</ion-label>
+    <ion-input type="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color = "dark">Amount:</ion-label>
+    <ion-input type="password"></ion-input>
+  </ion-item>
+
+  <ion-card>
+
+    <ion-card-content>
+      <ion-card-title>
+        Upload Pictures
+      </ion-card-title>
+      <p>
+        Upload pictures to help others know more about this payment.
+      </p>
+    </ion-card-content>
+
+  </ion-card>
+
+
+
+</ion-list>
+
+<div padding>
+  <button ion-button full color="primary" block (click)="doConfirm()">Confirm</button>
+</div>
+
+
+</ion-content>
