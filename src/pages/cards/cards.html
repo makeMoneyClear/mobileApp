@@ -1,0 +1,132 @@
+<ion-header>
+  <ion-navbar>
+  <ion-title>Events</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="cards-bg social-cards">
+
+<ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+<ion-list>
+  <ion-item *ngFor="let item of items">
+    {{ item }}
+  </ion-item>
+</ion-list>
+
+
+<ion-menu [content]="content">
+    
+  <ion-content>
+    <ion-list>
+      <ion-item>
+      <ion-avatar item-left>
+        <img src="assets/img/avatar.jpg" height="100" width="100">
+      </ion-avatar>
+      <h2>Van Gogh</h2>
+      <p>1 Unpaid Event</p>
+     </ion-item>
+      
+      <button ion-item (click)="openPage(HomePage)">
+        Create New Event
+      </button>
+      <button ion-item (click)="openPage(signupPage)">
+        My Balance
+      </button>
+      <button ion-item (click)="openPage(signupPage)">
+        Settings
+      </button>
+      <button ion-item (click)="openPage(signupPage)">
+        Logout
+      </button>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-nav id="nav" #content [root]="rootPage"></ion-nav>
+
+
+
+<ion-card>
+  <ion-item (click)="openEvent(Event1Page)">
+    <h2>Last Dinner</h2>
+    <p>May 10, 1996</p>
+  </ion-item>
+  <img src="assets/img/lastDinner.jpg">
+  <ion-card-content>
+    <p>When evening came, Jesus was reclining at the table with the Twelve. And while they were eating, he said, “Truly I tell you, one of you will betray me.”</p>
+  </ion-card-content>
+  <ion-row>
+    <ion-col center text-center>
+      <ion-note>
+        $ 13.45
+      </ion-note>
+    </ion-col>
+    <ion-col>
+      <button ion-button color="primary" clear small icon-right (click)="doPay()">
+        Not Paid
+      </button>
+    </ion-col>
+  </ion-row>
+</ion-card>
+
+
+<ion-card>
+  <ion-item>
+    <h2>Second Dinner</h2>
+    <p>May 15, 1996</p>
+  </ion-item>
+  <img src="assets/img/secondDinner.jpg">
+  <ion-card-content>
+    <p>The second day... God called the vault "sky." And there was evening, and there was morning.</p>
+  </ion-card-content>
+  <ion-row>
+    <ion-col center text-center>
+      <ion-note>
+        $ 21.96
+      </ion-note>
+    </ion-col>
+    <ion-col>
+      <button ion-button color="primary" clear small icon-right (click)="doPaid()">
+        Paid
+      </button>
+    </ion-col>
+  </ion-row>
+</ion-card>
+
+
+<ion-card>
+
+  <ion-item>
+    <h2>First Dinner</h2>
+    <p>Feburary 5, 1995</p>
+  </ion-item>
+
+  <img src="assets/img/firstDinner.jpg">
+
+  <ion-card-content>
+    <p>On the first day of the Festival of Unleavened Bread, the disciples came to Jesus and asked, “Where do you want us to make preparations for you to eat the Passover?”</p>
+  </ion-card-content>
+
+  <ion-row>
+    <ion-col center text-center>
+      <ion-note>
+        $ 18.67
+      </ion-note>
+    </ion-col>
+    <ion-col>
+      <button ion-button color="primary" clear small icon-right (click)="doPaid()">
+        Paid
+      </button>
+    </ion-col>
+  </ion-row>
+
+</ion-card>
+
+
+</ion-content>
+
+<style>
+  .social-cards ion-col {
+    padding: 0;
+  }
+</style>
