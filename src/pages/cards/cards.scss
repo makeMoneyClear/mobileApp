@@ -1,0 +1,28 @@
+page-cards {
+	.button{
+		font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+	}
+
+	ion-avatar{
+		opacity: 0.8;
+	}
+
+	.input[type=text] {
+	    width: 130px;
+	    -webkit-transition: width 0.4s ease-in-out;
+	    transition: width 0.4s ease-in-out;
+	}
+
+	/* When the input field gets focus, change its width to 100% */
+	input[type=text]:focus {
+	    width: 100%;
+	}
+
+	ion-card{
+		-webkit-box-shadow: 13px 16px 41px 3px rgba(0,0,0,0.57);	
+		-moz-box-shadow: 13px 16px 41px 3px rgba(0,0,0,0.57);
+		box-shadow: 13px 16px 41px 3px rgba(0,0,0,0.57);
+
+	}
+	
+}
