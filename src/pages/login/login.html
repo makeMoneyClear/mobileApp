@@ -1,0 +1,34 @@
+<!--
+  Generated template for the Login page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-header>
+  <ion-navbar>
+    <ion-title>Make money clear</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div class="spacer" style="height: 40px;"></div>
+  <img src="assets/img/ionic.png" width="80px"/>
+  <ion-list inset>
+
+    <ion-item>
+      <ion-input type="text" placeholder="Email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input type="password" placeholder="Password"></ion-input>
+    </ion-item>
+
+  </ion-list>
+
+  <div padding>
+    <button ion-button block>Sign In</button>
+    <div class="spacer" style="height: 20px;"></div>
+    <button ion-button clear block (click)="toSignUp();">Creat an account</button>
+  </div>
+</ion-content>
