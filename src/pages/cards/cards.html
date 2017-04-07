@@ -29,10 +29,10 @@
       <button class = "button" ion-item (click)="openPage(HomePage)">
         Create New Event
       </button>
-      <button class = "button" ion-item (click)="openPage(BalancePage)">
+      <button class = "button" ion-item (click)="launchBalancePage()">
         My Balance
       </button>
-      <button class = "button" ion-item (click)="openPage(SettingPage)">
+      <button class = "button" ion-item (click)="launchSettingPage()">
         Settings
       </button>
       <button class = "button" ion-item  ng-click="login()">
@@ -91,6 +91,31 @@
 
 <ion-nav id="nav" #content [root]="rootPage"></ion-nav>
 
+
+
+<!--<ion-card>
+  <ion-item color = "card3"(click)="openEvent(Event1Page)" >
+    <h2>{{payment.title}}</h2>
+    <p>May 10, 1996</p>
+  </ion-item>
+  <img src="assets/img/lastDinner.jpg">
+  <ion-card-content>
+    <p>{{payment.title}}</p>
+  </ion-card-content>
+  <ion-row>
+    <ion-col center text-center>
+      <ion-note>
+        $ {{payment.amount}}
+      </ion-note>
+    </ion-col>
+    <ion-col >
+      <button ion-button color = "danger" small icon-right (click)="doPay()" > 
+      
+        Not Paid
+      </button>
+    </ion-col>
+  </ion-row>
+</ion-card>-->
 
 
 <ion-card>

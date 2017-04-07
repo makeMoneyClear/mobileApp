@@ -1,11 +1,17 @@
 import { Component } from '@angular/core';
-import { AlertController } from 'ionic-angular';
-// import { NgZone } from 'angular2/core';
+import { NavController, AlertController } from 'ionic-angular';
+import { Camera } from 'ionic-native';
+import { AngularFire,FirebaseListObservable} from'angularfire2';
+
 
 @Component({
+  selector:'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
+  public base64Image: string;
+  public books:FirebaseListObservable<any>;
+  public payment:FirebaseListObservable<any>;
 
   // static get paramaters(){
   //   return [NgZone];
@@ -14,7 +20,10 @@ export class HomePage {
   // constructor(ngzone){
   //   this.ngzone = ngzone;
   // }
-  constructor(public alertCtrl: AlertController) { }
+  constructor(public navCtrl: NavController, public  alertCtrl: AlertController, public angFire:AngularFire) { 
+    this.payment = angFire.database.list('/Payment');
+    this.books = angFire.database.list('/Books');
+  }
 
   // takepic(){
   //   var options = {
@@ -36,15 +45,129 @@ export class HomePage {
   //   },options);
   // }
 
-  doConfirm(){
+  addBook():void{
+    let prompt = this.alertCtrl.create({
+        title: 'Book Title and Author',
+        message: 'Enter the books title and author',
+        inputs:[
+          {
+            name:'title',
+            placeholder:"Book Tille"
+          },
+          {
+            name:'author',
+            placeholder: "Author's Name"
+          }
+        ],
+        buttons:[
+          {
+            text: "Cancel",
+            handler:data=>{
+              console.log("Cancel clicked");
+            }
+          },
+          {
+            text: "Save Book",
+            handler: data =>{
+              this.books.push({
+                title: data.title,
+                author: data.author
+              })
+            }
+          }
+        ]
+    });
+    prompt.present();
+  }
+
+editBook():void{
+    let prompt = this.alertCtrl.create({
+        title: 'Book Title and Author',
+        message: 'Enter the books title and author',
+        inputs:[
+          {
+            name:'title',
+            placeholder:"Book Tille"
+          },
+          {
+            name:'author',
+            placeholder: "Author's Name"
+          }
+        ],
+        buttons:[
+          {
+            text: "Cancel",
+            handler:data=>{
+              console.log("Cancel clicked");
+            }
+          },
+          {
+            text: "Save Book",
+            handler: data =>{
+              this.books.push({
+                title: data.title,
+                author: data.author
+              })
+            }
+          }
+        ]
+    });
+    prompt.present();
+  }
+
+  deleteBook():void{
+    let prompt = this.alertCtrl.create({
+        title: 'Book Title and Author',
+        message: 'Enter the books title and author',
+        inputs:[
+          {
+            name:'title',
+            placeholder:"Book Tille"
+          },
+          {
+            name:'author',
+            placeholder: "Author's Name"
+          }
+        ],
+        buttons:[
+          {
+            text: "Cancel",
+            handler:data=>{
+              console.log("Cancel clicked");
+            }
+          },
+          {
+            text: "Save Book",
+            handler: data =>{
+              this.books.push({
+                title: data.title,
+                author: data.author
+              })
+            }
+          }
+        ]
+    });
+    prompt.present();
+  }
+
+
+  
+
+  addPayment():void{
     let confirm = this.alertCtrl.create({
       title: 'Confirm the payment information?',
-      message:'Ask for NAMES for MONEY in total for ISSUE',
+      message:'Ask for {{shareTo}} for {{amount}} in total for {{title}}',
       buttons:[
         {
           text:'Finish',
-          handler: () => {
-            console.log('Finish clicked');
+          handler: data => {
+            this.payment.push({
+              title: data.title,
+              amount: data.amount,
+              shareTo: data.shareTo,
+              details: data.details
+
+            })
           }
         },
 
@@ -57,6 +180,19 @@ export class HomePage {
       ]
     });
     confirm.present()
+  }
+
+  takePicture(){
+    Camera.getPicture({
+        destinationType: Camera.DestinationType.DATA_URL,
+        targetWidth: 1000,
+        targetHeight: 1000
+    }).then((imageData) => {
+      // imageData is a base64 encoded string
+        this.base64Image = "data:image/jpeg;base64," + imageData;
+    }, (err) => {
+        console.log(err);
+    });
   }
 
 }

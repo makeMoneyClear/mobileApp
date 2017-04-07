@@ -5,6 +5,7 @@ $item-md-padding-top: 10px;
 $navbar-md-height: 150px;
 $card-md-background-color: #ffffe6;
 $card-md-border-radius: 4px;
+$item-md-divider-border-bottom: 10px;
 
 @import "ionic.globals";
 
@@ -37,6 +38,14 @@ $colors: (
   card1:      #ccffff,
   card2:      #e6e6ff,
   card3:      #ffe6e6,
+  friend:	    #ffaa80,
+  friend2:    #ff5050,
+  girl:       #ff99ff,
+  classmate:  #b3ffd9,
+  roommate:   #ff99c2,
+  comfirm:    #b3e6ff,
+  tab:        #e1f8ff,
+  intro:      #66ffc2,
 );
 
 

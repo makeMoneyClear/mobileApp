@@ -6,6 +6,23 @@ import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { Event1Page } from '../pages/events/lastDinner';
+import { BalancePage } from '../pages/balance/balance';
+import { SettingPage } from '../pages/setting/setting';
+import { User } from '../providers/user';
+import { IntroPage } from '../pages/intro/intro';
+import { LoginPage } from '../pages/login/login';
+import { SignupPage } from '../pages/signup/signup';
+import { AngularFireModule } from 'angularfire2';
+
+export const firebaseConfig = {
+    apiKey: "AIzaSyDvLRc0AQiy7eaIuiuojUHpXTwvOh0A1QA",
+    authDomain: "makethemoneyclear.firebaseapp.com",
+    databaseURL: "https://makethemoneyclear.firebaseio.com",
+    projectId: "makethemoneyclear",
+    storageBucket: "makethemoneyclear.appspot.com",
+    messagingSenderId: "840233556621"
+
+};
 
 @NgModule({
   declarations: [
@@ -14,10 +31,16 @@ import { Event1Page } from '../pages/events/lastDinner';
     ContactPage,
     HomePage,
     TabsPage,
-    Event1Page
+    Event1Page,
+    BalancePage,
+    SettingPage,
+    IntroPage,
+    LoginPage,
+    SignupPage
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(firebaseConfig)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -26,8 +49,13 @@ import { Event1Page } from '../pages/events/lastDinner';
     ContactPage,
     HomePage,
     TabsPage,
-    Event1Page
+    Event1Page,
+    BalancePage,
+    SettingPage,
+    IntroPage,
+    LoginPage,
+    SignupPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, User]
 })
 export class AppModule {}

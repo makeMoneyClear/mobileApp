@@ -1,0 +1,37 @@
+<!--
+  Generated template for the Intro page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color = "intro" align = "center">
+    <ion-title >Welcome!</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="intro-page">
+
+  <ion-slides pager>
+    <ion-slide *ngFor="let slide of slides">
+      <ion-toolbar>
+        <ion-buttons end>
+          <button ion-button color="primary" (click)="launchLoginPage()">Skip</button>
+        </ion-buttons>
+      </ion-toolbar>
+      <img [src]="slide.image" class="slide-image"/>
+      <h2 class="slide-title" [innerHTML]="slide.title"></h2>
+      <p [innerHTML]="slide.description"></p>
+    </ion-slide>
+    <ion-slide>
+      <ion-toolbar>
+      </ion-toolbar>
+      <img src="assets/img/f9cd75d5c0936669bd75b74a9f4f2551.jpg" class="slide-image"/>
+      <h2 class="slide-title">Ready to make your life easier?</h2>
+      <button ion-button clear icon-right color="primary" (click)= "launchLoginPage()"> 
+        Continue
+        <ion-icon name="arrow-forward"></ion-icon>
+      </button>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

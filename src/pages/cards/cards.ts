@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 import { HomePage } from '../home/home';
 import { Event1Page } from '../events/lastDinner';
-import { NavController } from 'ionic-angular';
+import { NavController, ModalController, Events } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
+import { BalancePage } from '../balance/balance';
+import { SettingPage } from '../setting/setting';
+import { User } from '../../providers/user';
 
 @Component({
   selector: 'cards',
@@ -10,10 +13,44 @@ import { AlertController } from 'ionic-angular';
 })
 export class CardsPage {
 
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public alertCtrl: AlertController, public modalCtrl: ModalController, public userService: User, public events: Events) {
 
   }
 
+  ionViewDidLoad(){
+    this.events.subscribe('recipe:added', (data)=>{
+      console.log(data);
+    });
+  }
+
+  launchBalancePage(){
+
+    // console.log(this.userService.username);
+
+    let modal = this.modalCtrl.create(BalancePage);
+
+    // modal.onDidDismiss((data)=>{
+    //   console.log(data);
+    // })
+
+    modal.present();
+
+    // let data = {
+    //   title:'fjeiw',
+    //   infew:[
+    //       'ha',
+    //     'qwfw'
+    //   ],
+    //   time: 'dieo'
+    // };
+
+
+    // this.navCtrl.push(BalancePage,data);
+  }
+
+  launchSettingPage(){
+    this.navCtrl.push(SettingPage);
+  }
 
   openPage(item){
     this.navCtrl.push(HomePage,{
