@@ -17,7 +17,7 @@ export class SignupPage {
   users:FirebaseListObservable<any>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController, public angFire:AngularFire) {
-    this.users = angFire.database.list('/Users')
+    this.users = angFire.database.list('/User')
   }
 
 

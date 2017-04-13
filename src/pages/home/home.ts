@@ -52,7 +52,7 @@ export class HomePage {
         inputs:[
           {
             name:'title',
-            placeholder:"Book Tille"
+            placeholder:"Book Title"
           },
           {
             name:'author',
