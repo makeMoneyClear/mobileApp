@@ -80,18 +80,18 @@ export class HomePage {
     prompt.present();
   }
 
-editBook():void{
+editBook(book):void{
     let prompt = this.alertCtrl.create({
         title: 'Book Title and Author',
         message: 'Enter the books title and author',
         inputs:[
           {
             name:'title',
-            placeholder:"Book Tille"
+            placeholder:book.title
           },
           {
             name:'author',
-            placeholder: "Author's Name"
+            placeholder: book.author
           }
         ],
         buttons:[
@@ -104,9 +104,18 @@ editBook():void{
           {
             text: "Save Book",
             handler: data =>{
-              this.books.push({
-                title: data.title,
-                author: data.author
+              let newTitle: String = book.title;
+              let newAuthor: String = book.author;
+
+              if (data.title != ''){
+                newTitle = data.title;
+              }
+              if (data.author != ''){
+                newAuthor = data.author;
+              }
+              this.books.update(book.$key,{
+                title: newTitle,
+                author: newAuthor
               })
             }
           }
@@ -115,20 +124,9 @@ editBook():void{
     prompt.present();
   }
 
-  deleteBook():void{
+  deleteBook(bookID):void{
     let prompt = this.alertCtrl.create({
-        title: 'Book Title and Author',
-        message: 'Enter the books title and author',
-        inputs:[
-          {
-            name:'title',
-            placeholder:"Book Tille"
-          },
-          {
-            name:'author',
-            placeholder: "Author's Name"
-          }
-        ],
+        title: 'Delete Book',
         buttons:[
           {
             text: "Cancel",
@@ -137,12 +135,9 @@ editBook():void{
             }
           },
           {
-            text: "Save Book",
+            text: "Delete Book",
             handler: data =>{
-              this.books.push({
-                title: data.title,
-                author: data.author
-              })
+              this.books.remove(bookID)
             }
           }
         ]
