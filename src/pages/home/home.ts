@@ -25,6 +25,11 @@ export class HomePage {
     this.books = angFire.database.list('/Books');
   }
 
+  public title: any;
+  public amount:any;
+  public shareTo:any;
+
+
   // takepic(){
   //   var options = {
   //     destinationType: Camera.DestinationType.DATA_URL,

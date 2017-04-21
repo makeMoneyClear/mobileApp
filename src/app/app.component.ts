@@ -12,7 +12,7 @@ import * as firebase from 'firebase';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  public rootPage: any;
+  public rootPage: any; 
   // rootPage = TabsPage;
 
   constructor(platform: Platform) {
@@ -28,9 +28,11 @@ export class MyApp {
   };
   firebase.initializeApp(config);
   
-  // this.rootPage = TabsPage;
+  // this.rootPage = LoginPage;
 
   firebase.auth().onAuthStateChanged((user) => {
+    console.log(user);
+
     if (user){
       this.rootPage = TabsPage;
       }else {

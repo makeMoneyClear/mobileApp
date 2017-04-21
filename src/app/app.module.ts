@@ -13,7 +13,7 @@ import { IntroPage } from '../pages/intro/intro';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { AngularFireModule } from 'angularfire2';
-import { ResetPasswordPage } from '../pages/reset-password/reset-pasaword';
+// import { ResetPasswordPage } from '../pages/reset-password/reset-password';
 import * as firebase from 'firebase';
 
 

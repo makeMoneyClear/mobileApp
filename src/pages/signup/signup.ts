@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
-import { AngularFire,FirebaseListObservable} from'angularfire2';
-
+import { AngularFire, FirebaseListObservable} from'angularfire2';
+// import { ResetPasswordPage } from '../pages/reset-password/reset-password';
 /*
   Generated class for the Signup page.
 
@@ -79,6 +79,11 @@ export class SignupPage {
       });
     prompt.present();
   }
+
+  // redirectToResetPagw(){
+  //   this.navCtrl.push(ResetPasswordPage);
+
+  // }
 
 
   ionViewDidLoad() {
