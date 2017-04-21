@@ -13,6 +13,9 @@ import { IntroPage } from '../pages/intro/intro';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { AngularFireModule } from 'angularfire2';
+import { ResetPasswordPage } from '../pages/reset-password/reset-pasaword';
+import * as firebase from 'firebase';
+
 
 export const firebaseConfig = {
     apiKey: "AIzaSyDvLRc0AQiy7eaIuiuojUHpXTwvOh0A1QA",
