@@ -22,20 +22,20 @@ export class UserService {
   }
 
 
-  loadUser(number){
-    if (this.data){
-      return Promise.resolve(this.data);
-    }
-    return new Promise(resolve=>{
-      this.http.get('https://randomuser.me/api/?results='+ number)
-        .map(res => res.json())
-        .subscribe(data =>{
-          this.data = data.results;
-          resolve(this.data);
-        })
-    })
+  // loadUser(number){
+  //   if (this.data){
+  //     return Promise.resolve(this.data);
+  //   }
+  //   return new Promise(resolve=>{
+  //     this.http.get('https://randomuser.me/api/?results='+ number)
+  //       .map(res => res.json())
+  //       .subscribe(data =>{
+  //         this.data = data.results;
+  //         resolve(this.data);
+  //       })
+  //   })
 
-  }
+  // }
 
 
   signUpUser(email:string,password:string){
@@ -43,10 +43,26 @@ export class UserService {
       .then((newUserCreated)=>{
         this.fireAuth.signInWithEmailAndPassword(email,password)
         .then((authenticatedUser)=>{
-          this.userProfile.child(authenticatedUser.uid).set({email:email})
+          this.userProfile.child(authenticatedUser.uid).set({
+            email:email
+          })
       })
   })
 }
+
+  loginUser (email:string,password:string):any{
+    return this.fireAuth.signInWithEmailAndPassword(email,password);
+  }
+
+  logOutUser(){
+    return this.fireAuth.signOut();
+  }
+  
+  UserForgotPassword(email:any){
+    return this.fireAuth.sendPasswordResetEmail(email);
+  }
+    
+
   }
 
 

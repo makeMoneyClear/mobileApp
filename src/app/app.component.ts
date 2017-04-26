@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 import { LoginPage } from '../pages/login/login';
+import { IntroPage } from '../pages/intro/intro';
 
 import { TabsPage } from '../pages/tabs/tabs';
 import * as firebase from 'firebase';
@@ -29,9 +30,9 @@ export class MyApp {
   };
   firebase.initializeApp(config);
 
-  // this.rootPage = TabsPage;
+  this.rootPage = IntroPage;
   
-  this.rootPage = LoginPage;
+  // this.rootPage = LoginPage;
 
   // firebase.auth().onAuthStateChanged((user) => {
   //   console.log(user);

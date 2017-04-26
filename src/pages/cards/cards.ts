@@ -5,15 +5,17 @@ import { NavController, ModalController, Events } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { BalancePage } from '../balance/balance';
 import { SettingPage } from '../setting/setting';
-import { User } from '../../providers/user';
+import { UserService } from '../../providers/user-service';
+import { LoginPage } from '../login/login';
 
 @Component({
   selector: 'cards',
-  templateUrl: 'cards.html'
+  templateUrl: 'cards.html',
+  providers : [UserService]
 })
 export class CardsPage {
 
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController, public modalCtrl: ModalController, public userService: User, public events: Events) {
+  constructor(private userService: UserService,public navCtrl: NavController, public alertCtrl: AlertController, public modalCtrl: ModalController,  public events: Events) {
 
   }
 
@@ -99,6 +101,30 @@ export class CardsPage {
       ]
     });
     Paid.present()
+  }
+
+  userLogOut(){
+    this.userService.logOutUser();
+
+    let logOut = this.alertCtrl.create({
+      title: 'Current User Loged out',
+      buttons:[
+        {
+          text:'OK',
+          handler: () => {
+            console.log('Finish clicked');
+          }
+        },
+      ]
+    });
+    logOut.present()
+    this.userService.logOutUser().then(()=>{
+      this.navCtrl.setRoot(LoginPage);
+    });
+    
+
+
+
   }
 
 }

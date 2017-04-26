@@ -30,16 +30,19 @@
 
   </ion-list>
 
-  <ion-list>
+  <!--<ion-list>
     <p>List of users</p>
     <ion-item *ngFor = "let user of usersList">
       <ion-label>{{user.name.first}}.{{user.name.last}}</ion-label>
     </ion-item>
-  </ion-list>
+  </ion-list>-->
 
   <div padding>
-    <button ion-button block><i class="fa fa-user-plus" aria-hidden="true"></i>Sign In</button>
+    <button ion-button (click)="doLogIn();"><i class="fa fa-user-plus" aria-hidden="true" ></i>Log In</button>
     <div class="spacer" style="height: 20px;"></div>
-    <button ion-button block (click)="userSignUp();">Create an account</button>
+    <button ion-button (click)="userSignUp();">Create an account</button>
+    <div class="spacer" style="height: 20px;"></div>
+    <button ion-button clear full (click)="gotPassword();">Forget Password?</button>
+
   </div>
 </ion-content>
