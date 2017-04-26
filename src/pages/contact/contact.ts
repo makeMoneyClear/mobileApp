@@ -10,7 +10,6 @@ import { NavController } from 'ionic-angular';
 })
 export class ContactPage {
 
-  // @ViewChild('map') mapElement;
 
   constructor(public navCtrl: NavController) {
 

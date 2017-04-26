@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams,LoadingController,AlertController } from 'ionic-angular';
+import { NavController, NavParams,LoadingController,AlertController,ModalController } from 'ionic-angular';
 import { SignupPage } from '../signup/signup';
 import { UserService } from '../../providers/user-service';
 import { CardsPage } from '../cards/cards';
@@ -23,8 +23,8 @@ export class LoginPage {
   private usersList : any;
 
 
-  constructor(private alertCtrl:AlertController ,public navCtrl: NavController, public navParams: NavParams,private userService: UserService,private loadingCtrl:LoadingController) {
-    this.emailField = "simengl2@illinois.edu";
+  constructor(private modalCtrl : ModalController, private alertCtrl:AlertController ,public navCtrl: NavController, public navParams: NavParams,private userService: UserService,private loadingCtrl:LoadingController) {
+    this.emailField = "@illinois.edu";
     // this.listUsers();
     }
 
@@ -55,7 +55,8 @@ export class LoginPage {
      this.userService.loginUser(this.emailField,this.passwordField)
       .then(authData =>{
         //successful
-        this.navCtrl.setRoot(TabsPage);
+        let leadToTabsPage = this.modalCtrl.create(TabsPage);
+        leadToTabsPage.present();
       },error =>{
         let alert = this.alertCtrl.create({
           title:'Error logging in',
@@ -66,9 +67,9 @@ export class LoginPage {
         // alert("error logging in:" + error.message);
       });
 
-      let loader = this.loadingCtrl.create({dismissOnPageChange:true,})
+      // let loader = this.loadingCtrl.create({dismissOnPageChange:true,})
 
-      loader.present();
+      // loader.present();
 
   }
     

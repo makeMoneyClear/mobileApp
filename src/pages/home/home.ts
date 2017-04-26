@@ -23,7 +23,7 @@ export class HomePage {
   // }
   constructor(public navCtrl: NavController, public  alertCtrl: AlertController, public angFire:AngularFire) { 
     this.payment = angFire.database.list('/Payment');
-    this.books = angFire.database.list('/Books');
+    // this.books = angFire.database.list('/Books');
   }
 
   public title: any;
@@ -51,105 +51,105 @@ export class HomePage {
   //   },options);
   // }
 
-  addBook():void{
-    let prompt = this.alertCtrl.create({
-        title: 'Book Title and Author',
-        message: 'Enter the books title and author',
-        inputs:[
-          {
-            name:'title',
-            placeholder:"Book Title"
-          },
-          {
-            name:'author',
-            placeholder: "Author's Name"
-          }
-        ],
-        buttons:[
-          {
-            text: "Cancel",
-            handler:data=>{
-              console.log("Cancel clicked");
-            }
-          },
-          {
-            text: "Save Book",
-            handler: data =>{
-              this.books.push({
-                title: data.title,
-                author: data.author
-              })
-            }
-          }
-        ]
-    });
-    prompt.present();
-  }
+//   addBook():void{
+//     let prompt = this.alertCtrl.create({
+//         title: 'Book Title and Author',
+//         message: 'Enter the books title and author',
+//         inputs:[
+//           {
+//             name:'title',
+//             placeholder:"Book Title"
+//           },
+//           {
+//             name:'author',
+//             placeholder: "Author's Name"
+//           }
+//         ],
+//         buttons:[
+//           {
+//             text: "Cancel",
+//             handler:data=>{
+//               console.log("Cancel clicked");
+//             }
+//           },
+//           {
+//             text: "Save Book",
+//             handler: data =>{
+//               this.books.push({
+//                 title: data.title,
+//                 author: data.author
+//               })
+//             }
+//           }
+//         ]
+//     });
+//     prompt.present();
+//   }
 
-editBook(book):void{
-    let prompt = this.alertCtrl.create({
-        title: 'Book Title and Author',
-        message: 'Enter the books title and author',
-        inputs:[
-          {
-            name:'title',
-            placeholder:book.title
-          },
-          {
-            name:'author',
-            placeholder: book.author
-          }
-        ],
-        buttons:[
-          {
-            text: "Cancel",
-            handler:data=>{
-              console.log("Cancel clicked");
-            }
-          },
-          {
-            text: "Save Book",
-            handler: data =>{
-              let newTitle: String = book.title;
-              let newAuthor: String = book.author;
+// editBook(book):void{
+//     let prompt = this.alertCtrl.create({
+//         title: 'Book Title and Author',
+//         message: 'Enter the books title and author',
+//         inputs:[
+//           {
+//             name:'title',
+//             placeholder:book.title
+//           },
+//           {
+//             name:'author',
+//             placeholder: book.author
+//           }
+//         ],
+//         buttons:[
+//           {
+//             text: "Cancel",
+//             handler:data=>{
+//               console.log("Cancel clicked");
+//             }
+//           },
+//           {
+//             text: "Save Book",
+//             handler: data =>{
+//               let newTitle: String = book.title;
+//               let newAuthor: String = book.author;
 
-              if (data.title != ''){
-                newTitle = data.title;
-              }
-              if (data.author != ''){
-                newAuthor = data.author;
-              }
-              this.books.update(book.$key,{
-                title: newTitle,
-                author: newAuthor
-              })
-            }
-          }
-        ]
-    });
-    prompt.present();
-  }
+//               if (data.title != ''){
+//                 newTitle = data.title;
+//               }
+//               if (data.author != ''){
+//                 newAuthor = data.author;
+//               }
+//               this.books.update(book.$key,{
+//                 title: newTitle,
+//                 author: newAuthor
+//               })
+//             }
+//           }
+//         ]
+//     });
+//     prompt.present();
+//   }
 
-  deleteBook(bookID):void{
-    let prompt = this.alertCtrl.create({
-        title: 'Delete Book',
-        buttons:[
-          {
-            text: "Cancel",
-            handler:data=>{
-              console.log("Cancel clicked");
-            }
-          },
-          {
-            text: "Delete Book",
-            handler: data =>{
-              this.books.remove(bookID)
-            }
-          }
-        ]
-    });
-    prompt.present();
-  }
+//   deleteBook(bookID):void{
+//     let prompt = this.alertCtrl.create({
+//         title: 'Delete Book',
+//         buttons:[
+//           {
+//             text: "Cancel",
+//             handler:data=>{
+//               console.log("Cancel clicked");
+//             }
+//           },
+//           {
+//             text: "Delete Book",
+//             handler: data =>{
+//               this.books.remove(bookID)
+//             }
+//           }
+//         ]
+//     });
+//     prompt.present();
+//   }
 
 
   
