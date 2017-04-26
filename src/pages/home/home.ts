@@ -4,6 +4,7 @@ import { Camera } from 'ionic-native';
 import { AngularFire,FirebaseListObservable} from'angularfire2';
 
 
+
 @Component({
   selector:'page-home',
   templateUrl: 'home.html'

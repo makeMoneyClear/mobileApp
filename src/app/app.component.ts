@@ -13,7 +13,8 @@ import * as firebase from 'firebase';
 })
 export class MyApp {
   public rootPage: any; 
-  // rootPage = TabsPage;
+
+  
 
   constructor(platform: Platform) {
 
@@ -27,18 +28,20 @@ export class MyApp {
     messagingSenderId: "840233556621"
   };
   firebase.initializeApp(config);
+
+  // this.rootPage = TabsPage;
   
-  // this.rootPage = LoginPage;
+  this.rootPage = LoginPage;
 
-  firebase.auth().onAuthStateChanged((user) => {
-    console.log(user);
+  // firebase.auth().onAuthStateChanged((user) => {
+  //   console.log(user);
 
-    if (user){
-      this.rootPage = TabsPage;
-      }else {
-      this.rootPage = LoginPage;
-    }
-  });
+  //   if (user){
+  //     this.rootPage = TabsPage;
+  //     }else {
+  //     this.rootPage = LoginPage;
+  //   }
+  // });
 
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
