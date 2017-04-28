@@ -4,7 +4,6 @@ import { AngularFire, FirebaseListObservable} from'angularfire2';
 // import { ResetPasswordPage } from '../pages/reset-password/reset-password';
 /*
   Generated class for the Signup page.
-
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */

@@ -19,7 +19,7 @@ export class UserService {
   constructor(public http: Http) {
     this.fireAuth = firebase.auth();
     this.userProfile = firebase.database().ref('users');
-    this.paymentEvent = firebase.database().ref('patmentEvent');
+    this.paymentEvent = firebase.database().ref('paymentEvent');
 
   }
 

@@ -115,82 +115,48 @@
 </ion-card>-->
 
 
-<ion-card>
-  <ion-item color = "card3"(click)="openEvent(Event1Page)" >
-    <h2>Last Dinner</h2>
-    <p>May 10, 1996</p>
+
+  <!--<h2 align = "center">Trying</h2>
+  <ion-list>
+  <ion-item-sliding *ngFor= "let book of books | async">
+    <ion-item >
+      <p>Title:{{book.title}}</p>
+      <p>Author:{{book.author}}</p>
+   </ion-item>
+   <ion-item-options side="right">
+      <button ion-button color="secondary" (click)="editBook(book)"><ion-icon name="md-create"></ion-icon>Edit</button>
+   </ion-item-options>
+    <ion-item-options side="left">
+      <button ion-button color="danger" (click)="deleteBook(book.$key)"><ion-icon name="md-trash"></ion-icon>Delete</button>
+   </ion-item-options>
+  </ion-item-sliding>
+  </ion-list>-->
+
+<ion-list>
+  <ion-item *ngFor="let event of events | async">
+    <ion-card>
+      <ion-item (click)="openEvent(event)">
+        <h2>{{event.name}}</h2>
+        <p>{{event.date}}</p>
+      </ion-item>
+      <img src="assets/img/{{event.name}}.jpg">
+      <!-- <img src="{{event.name}}.jpg"> -->
+      <ion-card-content>
+        <p>{{event.where}}</p>
+      </ion-card-content>
+      <ion-row>
+        <ion-col center text-center>
+          <ion-note>${{event.average}}</ion-note>
+        </ion-col>
+        <ion-col>
+          <button ion-button color="primary" clear small icon-right (click)="doPay()">
+            Not Paid
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-card>
   </ion-item>
-  <img src="assets/img/lastDinner.jpg">
-  <ion-card-content>
-    <p>When evening came, Jesus was reclining at the table with the Twelve. And while they were eating, he said, “Truly I tell you, one of you will betray me.”</p>
-  </ion-card-content>
-  <ion-row>
-    <ion-col center text-center>
-      <ion-note>
-        $ 13.45
-      </ion-note>
-    </ion-col>
-    <ion-col >
-      <button ion-button color = "danger" small icon-right (click)="doPay()" > 
-      
-        Not Paid
-      </button>
-    </ion-col>
-  </ion-row>
-</ion-card>
-
-
-<ion-card>
-  <ion-item color = "card2">
-    <h2>Second Dinner</h2>
-    <p>May 15, 1996</p>
-  </ion-item>
-  <img src="assets/img/secondDinner.jpg">
-  <ion-card-content color = "card2">
-    <p>The second day... God called the vault "sky." And there was evening, and there was morning.</p>
-  </ion-card-content>
-  <ion-row>
-    <ion-col center text-center>
-      <ion-note>
-        $ 21.96
-      </ion-note>
-    </ion-col>
-    <ion-col>
-      <button ion-button color="primary" clear small icon-right (click)="doPaid()" color = "primary">
-        Paid
-      </button>
-    </ion-col>
-  </ion-row>
-</ion-card>
-
-
-<ion-card>
-
-  <ion-item color = "card1">
-    <h2>First Dinner</h2>
-    <p>Feburary 5, 1995</p>
-  </ion-item>
-
-  <img src="assets/img/firstDinner.jpg">
-
-  <ion-card-content color = "card1">
-    <p>On the first day of the Festival of Unleavened Bread, the disciples came to Jesus and asked, “Where do you want us to make preparations for you to eat the Passover?”</p>
-  </ion-card-content>
-
-  <ion-row>
-    <ion-col center text-center>
-      <ion-note>
-        $ 18.67
-      </ion-note>
-    </ion-col>
-    <ion-col>
-      <button ion-button color="primary" clear small icon-right (click)="doPaid()" color = "primary"> 
-        Paid
-      </button>
-    </ion-col>
-  </ion-row>
-
-</ion-card>
+</ion-list>
 
 
 </ion-content>

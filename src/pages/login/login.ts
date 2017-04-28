@@ -12,7 +12,7 @@ import { TabsPage } from '../tabs/tabs';
   Ionic pages and navigation.
 */
 @Component({
-  selector: 'page-login',
+  selector: 'login',
   templateUrl: 'login.html',
   providers : [UserService]
 })

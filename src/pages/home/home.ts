@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { NavController, AlertController } from 'ionic-angular';
 import { Camera } from 'ionic-native';
 // import { AngularFire,FirebaseListObservable} from'angularfire2';
-<<<<<<< HEAD
-=======
+// <<<<<<< HEAD
+// =======
 import * as firebase from 'firebase';
->>>>>>> 62cfaa6105ac2103b3a9eff26e2004a7173bacc2
+// >>>>>>> 62cfaa6105ac2103b3a9eff26e2004a7173bacc2
 
 
 
@@ -17,14 +17,14 @@ export class HomePage {
   public base64Image: string;
   // public books:FirebaseListObservable<any>;
   // public payment:FirebaseListObservable<any>;
-<<<<<<< HEAD
-=======
+// <<<<<<< HEAD
+// =======
   public title: any;
   public amount:any;
   public shareTo:any;
   public details : any;
   public picture : any;
->>>>>>> 62cfaa6105ac2103b3a9eff26e2004a7173bacc2
+// >>>>>>> 62cfaa6105ac2103b3a9eff26e2004a7173bacc2
 
   // static get paramaters(){
   //   return [NgZone];
@@ -33,15 +33,15 @@ export class HomePage {
   // constructor(ngzone){
   //   this.ngzone = ngzone;
   // }
-<<<<<<< HEAD
+// <<<<<<< HEAD
   // constructor(public navCtrl: NavController, public  alertCtrl: AlertController, public angFire:AngularFire) { 
     // this.payment = angFire.database.list('/Payment');
-=======
+// =======
   constructor(public navCtrl: NavController, public  alertCtrl: AlertController) { 
     // this.payment = angFire.database.list('/Payment');
     // this.title = title
     // this. title = firebase.database().ref('/payment/title');
->>>>>>> 62cfaa6105ac2103b3a9eff26e2004a7173bacc2
+// >>>>>>> 62cfaa6105ac2103b3a9eff26e2004a7173bacc2
     // this.books = angFire.database.list('/Books');
   }
 
@@ -75,18 +75,18 @@ export class HomePage {
   //   confirm.present()
   // }
 
-  takePicture(){
-    Camera.getPicture({
-        destinationType: Camera.DestinationType.DATA_URL,
-        targetWidth: 1000,
-        targetHeight: 1000
-    }).then((imageData) => {
-      // imageData is a base64 encoded string
-        this.base64Image = "data:image/jpeg;base64," + imageData;
-    }, (err) => {
-        console.log(err);
-    });
-  }
+  // takePicture(){
+  //   Camera.getPicture({
+  //       destinationType: Camera.DestinationType.DATA_URL,
+  //       targetWidth: 1000,
+  //       targetHeight: 1000
+  //   }).then((imageData) => {
+  //     // imageData is a base64 encoded string
+  //       this.base64Image = "data:image/jpeg;base64," + imageData;
+  //   }, (err) => {
+  //       console.log(err);
+  //   });
+  // }
 
     // takepic(){
   //   var options = {
@@ -208,7 +208,7 @@ export class HomePage {
 //     prompt.present();
 //   }
 
-<<<<<<< HEAD
+// <<<<<<< HEAD
 
   
 
@@ -254,6 +254,6 @@ export class HomePage {
     });
   }
 
-=======
->>>>>>> 62cfaa6105ac2103b3a9eff26e2004a7173bacc2
+// =======
+// >>>>>>> 62cfaa6105ac2103b3a9eff26e2004a7173bacc2
 }
