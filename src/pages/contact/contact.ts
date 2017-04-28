@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserService } from '../../providers/user-service';
 
 import { NavController } from 'ionic-angular';
 
@@ -6,12 +7,34 @@ import { NavController } from 'ionic-angular';
 
 @Component({
   selector: 'page-contact',
-  templateUrl: 'contact.html'
+  templateUrl: 'contact.html',
+  providers : [UserService]
 })
 export class ContactPage {
 
+  private  roommateList : any;
+  private  classmateList : any;
 
-  constructor(public navCtrl: NavController) {
+
+  constructor(public navCtrl: NavController,private userService: UserService) {
+    this.createRoommateList();
+    this.createClassmateList();
+
+  }
+
+    createRoommateList(){
+    this.userService.loadContact(4)
+      .then(data => {
+        this.roommateList = data;
+      })
+
+  }
+
+      createClassmateList(){
+    this.userService.loadContact(10)
+      .then(data => {
+        this.classmateList = data;
+      })
 
   }
 
