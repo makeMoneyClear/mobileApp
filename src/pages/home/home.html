@@ -39,22 +39,22 @@
 
   <ion-item background-color = "dark">
     <ion-label color = "dark" class="label" >Title:</ion-label>
-    <ion-input  type="text" name = "title"></ion-input>
+    <ion-input  type="text" name = "title" [(ngModel)] = "title"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label color = "dark"class="label">Amount:$ </ion-label>
-    <ion-input type="money" name = "amount"></ion-input>
+    <ion-input type="money" name = "amount" [(ngModel)] = "amount"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label color = "dark"class="label">Share to @ : </ion-label>
-    <ion-input type="money" name = "shareTo"></ion-input>
+    <ion-input type="money" name = "shareTo" [(ngModel)] = "shareTo"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label color = "dark"class="label">More details: </ion-label>
-    <ion-input type="money" name = "details"></ion-input>
+    <ion-input type="money" name = "details" [(ngModel)] = "details"></ion-input>
   </ion-item>
 
   <!--<ion-card >

@@ -14,28 +14,14 @@ export class UserService {
   private data : any;
   public fireAuth: any;
   public userProfile:any;
+  public paymentEvent : any;
 
   constructor(public http: Http) {
     this.fireAuth = firebase.auth();
     this.userProfile = firebase.database().ref('users');
+    this.paymentEvent = firebase.database().ref('patmentEvent');
 
   }
-
-
-  // loadUser(number){
-  //   if (this.data){
-  //     return Promise.resolve(this.data);
-  //   }
-  //   return new Promise(resolve=>{
-  //     this.http.get('https://randomuser.me/api/?results='+ number)
-  //       .map(res => res.json())
-  //       .subscribe(data =>{
-  //         this.data = data.results;
-  //         resolve(this.data);
-  //       })
-  //   })
-
-  // }
 
 
   signUpUser(email:string,password:string){
@@ -50,6 +36,18 @@ export class UserService {
   })
 }
 
+//   createPayment(title:string,amount:string,shareTo:string,details:string){
+//     return this.fireAuth.createUserWithEmailAndPassword(email,password)
+//       .then((newUserCreated)=>{
+//         this.fireAuth.signInWithEmailAndPassword(email,password)
+//         .then((authenticatedUser)=>{
+//           this.userProfile.child(authenticatedUser.uid).set({
+//             email:email
+//           })
+//       })
+//   })
+// }
+
   loginUser (email:string,password:string):any{
     return this.fireAuth.signInWithEmailAndPassword(email,password);
   }
@@ -62,6 +60,20 @@ export class UserService {
     return this.fireAuth.sendPasswordResetEmail(email);
   }
     
+    loadContact(number){
+    if (this.data){
+      return Promise.resolve(this.data);
+    }
+    return new Promise(resolve=>{
+      this.http.get('https://randomuser.me/api/?results='+ number)
+        .map(res => res.json())
+        .subscribe(data =>{
+          this.data = data.results;
+          resolve(this.data);
+        })
+    })
+
+  }
 
   }
 

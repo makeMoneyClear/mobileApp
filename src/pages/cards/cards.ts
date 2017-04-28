@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { HomePage } from '../home/home';
 import { Event1Page } from '../events/lastDinner';
 import { NavController, ModalController, Events } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
@@ -54,11 +53,6 @@ export class CardsPage {
     this.navCtrl.push(SettingPage);
   }
 
-  openPage(item){
-    this.navCtrl.push(HomePage,{
-      item:item
-    })
-  }
 
   openEvent(item){
     this.navCtrl.push(Event1Page,{

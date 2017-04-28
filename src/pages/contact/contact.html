@@ -6,25 +6,41 @@
   </ion-navbar>
 </ion-header>
 
+  <!--<ion-list>
+    <p>List of users</p>
+    <ion-item *ngFor = "let user of usersList">
+      <ion-label>{{user.name.first}}.{{user.name.last}}</ion-label>
+    </ion-item>
+  </ion-list>-->
+
+
+  <!--<ion-list>
+    <p>List of users</p>
+    <ion-item *ngFor = "let user of usersList">
+      <ion-label>{{user.name.first}}.{{user.name.last}}</ion-label>
+    </ion-item>
+  </ion-list>-->
 
 <ion-content>
- <ion-item-group>
-      <ion-item-divider color="roommate"><ion-icon name='people'></ion-icon> Roommates</ion-item-divider>
-      <ion-item><ion-icon ios="ios-bowtie" md="md-bowtie" color="girl"></ion-icon>  Alen</ion-item>
-      <ion-item><ion-icon ios="ios-bowtie" md="md-bowtie" color="girl"></ion-icon>   Tina</ion-item>
+ <!--<ion-item-group>-->
+   <ion-list>
+      <ion-item-divider color="roommate" ><ion-icon name='people'></ion-icon> Roommates</ion-item-divider>
+      <ion-item  *ngFor = "let roommate of roommateList"><ion-label>{{roommate.name.first}}.{{roommate.name.last}}</ion-label></ion-item>
+      <!--<ion-item><ion-icon ios="ios-bowtie" md="md-bowtie" color="girl"></ion-icon>   Tina</ion-item>
       <ion-item><ion-icon ios="ios-bowtie" md="md-bowtie" color="girl"></ion-icon>   May</ion-item>
-      <ion-item><ion-icon ios="ios-bowtie" md="md-bowtie" color="girl"></ion-icon>   Greece</ion-item>
-    </ion-item-group>
+      <ion-item><ion-icon ios="ios-bowtie" md="md-bowtie" color="girl"></ion-icon>   Greece</ion-item>-->
+   </ion-list>
+    <!--</ion-item-group>-->
 
 
     <ion-item-group>
       <ion-item-divider color="classmate"><ion-icon name='people'></ion-icon> CS 196 Classmates</ion-item-divider>
-      <ion-item><ion-icon ios="ios-bowtie" md="md-bowtie" color="girl"></ion-icon>  Beth</ion-item>
-      <ion-item><ion-icon ios="ios-man" md="md-man" color="primary"></ion-icon>  Jack</ion-item>
+      <ion-item *ngFor = "let classmate of classmateList"><ion-icon ios="ios-bowtie" md="md-bowtie" color="girl"></ion-icon><ion-label>{{classmate.name.first}}.{{classmate.name.last}}</ion-label></ion-item>
+      <!--<ion-item><ion-icon ios="ios-man" md="md-man" color="primary"></ion-icon>  Jack</ion-item>
       <ion-item><ion-icon ios="ios-bowtie" md="md-bowtie" color="girl"></ion-icon>  Yui</ion-item>
       <ion-item><ion-icon ios="ios-man" md="md-man" color="primary"></ion-icon>  Jason</ion-item>
       <ion-item><ion-icon ios="ios-bowtie" md="md-bowtie" color="girl"></ion-icon>  Mary</ion-item>
-      <ion-item><ion-icon ios="ios-man" md="md-man" color="primary"></ion-icon>  Logan</ion-item>
+      <ion-item><ion-icon ios="ios-man" md="md-man" color="primary"></ion-icon>  Logan</ion-item>-->
     </ion-item-group>
 
    

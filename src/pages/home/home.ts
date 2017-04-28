@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, AlertController } from 'ionic-angular';
 import { Camera } from 'ionic-native';
-import { AngularFire,FirebaseListObservable} from'angularfire2';
+// import { AngularFire,FirebaseListObservable} from'angularfire2';
+import * as firebase from 'firebase';
 
 
 
@@ -11,8 +12,13 @@ import { AngularFire,FirebaseListObservable} from'angularfire2';
 })
 export class HomePage {
   public base64Image: string;
-  public books:FirebaseListObservable<any>;
-  public payment:FirebaseListObservable<any>;
+  // public books:FirebaseListObservable<any>;
+  // public payment:FirebaseListObservable<any>;
+  public title: any;
+  public amount:any;
+  public shareTo:any;
+  public details : any;
+  public picture : any;
 
   // static get paramaters(){
   //   return [NgZone];
@@ -21,17 +27,57 @@ export class HomePage {
   // constructor(ngzone){
   //   this.ngzone = ngzone;
   // }
-  constructor(public navCtrl: NavController, public  alertCtrl: AlertController, public angFire:AngularFire) { 
-    this.payment = angFire.database.list('/Payment');
+  constructor(public navCtrl: NavController, public  alertCtrl: AlertController) { 
+    // this.payment = angFire.database.list('/Payment');
+    // this.title = title
+    // this. title = firebase.database().ref('/payment/title');
     // this.books = angFire.database.list('/Books');
   }
 
-  public title: any;
-  public amount:any;
-  public shareTo:any;
 
+  // addPayment():void{
+  //   let confirm = this.alertCtrl.create({
+  //     title: 'Confirm the payment information?',
+  //     message:'Ask for {{shareTo}} for {{amount}} in total for {{title}}',
+  //     buttons:[
+  //       {
+  //         text:'Finish',
+  //         handler: data => {
+  //           this.payment.push({
+  //             title: data.title,
+  //             amount: data.amount,
+  //             shareTo: data.shareTo,
+  //             details: data.details
 
-  // takepic(){
+  //           })
+  //         }
+  //       },
+
+  //       {
+  //         text:'Go Back',
+  //         handler: () => {
+  //           console.log('Go back clicked');
+  //         }
+  //       }
+  //     ]
+  //   });
+  //   confirm.present()
+  // }
+
+  takePicture(){
+    Camera.getPicture({
+        destinationType: Camera.DestinationType.DATA_URL,
+        targetWidth: 1000,
+        targetHeight: 1000
+    }).then((imageData) => {
+      // imageData is a base64 encoded string
+        this.base64Image = "data:image/jpeg;base64," + imageData;
+    }, (err) => {
+        console.log(err);
+    });
+  }
+
+    // takepic(){
   //   var options = {
   //     destinationType: Camera.DestinationType.DATA_URL,
   //     sourceType: Camera.PictureSourceType.CAMERA,
@@ -150,50 +196,5 @@ export class HomePage {
 //     });
 //     prompt.present();
 //   }
-
-
-  
-
-  addPayment():void{
-    let confirm = this.alertCtrl.create({
-      title: 'Confirm the payment information?',
-      message:'Ask for {{shareTo}} for {{amount}} in total for {{title}}',
-      buttons:[
-        {
-          text:'Finish',
-          handler: data => {
-            this.payment.push({
-              title: data.title,
-              amount: data.amount,
-              shareTo: data.shareTo,
-              details: data.details
-
-            })
-          }
-        },
-
-        {
-          text:'Go Back',
-          handler: () => {
-            console.log('Go back clicked');
-          }
-        }
-      ]
-    });
-    confirm.present()
-  }
-
-  takePicture(){
-    Camera.getPicture({
-        destinationType: Camera.DestinationType.DATA_URL,
-        targetWidth: 1000,
-        targetHeight: 1000
-    }).then((imageData) => {
-      // imageData is a base64 encoded string
-        this.base64Image = "data:image/jpeg;base64," + imageData;
-    }, (err) => {
-        console.log(err);
-    });
-  }
 
 }
