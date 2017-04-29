@@ -1,11 +1,16 @@
-import { Component } from '@angular/core';
-import { Event1Page } from '../events/lastDinner';
-import { NavController, ModalController, Events } from 'ionic-angular';
+import { Component , NgZone } from '@angular/core';
+import { NavController, ModalController} from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { BalancePage } from '../balance/balance';
 import { SettingPage } from '../setting/setting';
+import { AngularFire, FirebaseListObservable} from 'angularfire2';
 import { UserService } from '../../providers/user-service';
 import { LoginPage } from '../login/login';
+// import { DetailPage } from '../pages/detail/detail';
+import { DetailsPage } from '../details/details';
+import {FileChooser, FilePath, File} from 'ionic-native';
+import * as firebase from 'firebase';
+
 
 @Component({
   selector: 'cards',
@@ -13,16 +18,23 @@ import { LoginPage } from '../login/login';
   providers : [UserService]
 })
 export class CardsPage {
+  firestore = firebase.storage();
+  events: FirebaseListObservable<any>;
+  imgsource: any;
+  constructor(private userService: UserService,public navCtrl: NavController, public alertCtrl: AlertController, public modalCtrl: ModalController, angFire: AngularFire, public zone: NgZone) {
+    this.events = angFire.database.list('/Events');
 
-  constructor(private userService: UserService,public navCtrl: NavController, public alertCtrl: AlertController, public modalCtrl: ModalController,  public events: Events) {
-
+    // for (var n = 0; n < this.events.length; n++) {
+    //   var average = this.events[n].price/this.events[n].number;
+    //   this.events[n].ave = average.toFixed(2);
+    // }
   }
 
-  ionViewDidLoad(){
-    this.events.subscribe('recipe:added', (data)=>{
-      console.log(data);
-    });
-  }
+  // ionViewDidLoad(){
+  //   this.events.subscribe('recipe:added', (data)=>{
+  //     console.log(data);
+  //   });
+  // }
 
   launchBalancePage(){
 
@@ -55,7 +67,7 @@ export class CardsPage {
 
 
   openEvent(item){
-    this.navCtrl.push(Event1Page,{
+    this.navCtrl.push(DetailsPage,{
       item:item
     })
   }
@@ -121,5 +133,12 @@ export class CardsPage {
 
   }
 
+  display(){
+    this.firestore.ref().child('images').getDownloadURL().then((url)=>{
+      this.zone.run(()=>{
+        this.imgsource = url;
+      })
+    })
+  }
 }
 

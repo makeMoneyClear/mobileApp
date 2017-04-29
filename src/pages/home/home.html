@@ -32,13 +32,13 @@
 
 
   <div align="center">
-    <h2 class = "new" color = "primary">Build new payment</h2>
+    <h2 class = "new" color = "primary">Create New Payment</h2>
   </div>
 
   <ion-list>
 
   <ion-item background-color = "dark">
-    <ion-label color = "dark" class="label" >Title:</ion-label>
+    <ion-label color = "dark" class="label" >Event Name:</ion-label>
     <ion-input  type="text" name = "title" [(ngModel)] = "title"></ion-input>
   </ion-item>
 
@@ -53,7 +53,17 @@
   </ion-item>
 
   <ion-item>
-    <ion-label color = "dark"class="label">More details: </ion-label>
+    <ion-label color = "dark"class="label">Date: </ion-label>
+    <ion-input type="money" name = "details" [(ngModel)] = "date"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color = "dark"class="label">Location: </ion-label>
+    <ion-input type="money" name = "details" [(ngModel)] = "location"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color = "dark"class="label">Descriptions: </ion-label>
     <ion-input type="money" name = "details" [(ngModel)] = "details"></ion-input>
   </ion-item>
 

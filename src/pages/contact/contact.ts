@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { UserService } from '../../providers/user-service';
-
+import { AngularFire, FirebaseListObservable} from 'angularfire2';
 import { NavController } from 'ionic-angular';
 
 
 
 @Component({
-  selector: 'page-contact',
+  selector: 'contact',
   templateUrl: 'contact.html',
   providers : [UserService]
 })
@@ -14,12 +14,12 @@ export class ContactPage {
 
   private  roommateList : any;
   private  classmateList : any;
+  people: FirebaseListObservable<any>;
 
-
-  constructor(public navCtrl: NavController,private userService: UserService) {
+  constructor(public navCtrl: NavController,private userService: UserService, angFire: AngularFire,) {
     this.createRoommateList();
     this.createClassmateList();
-
+    this.people = angFire.database.list('/users');
   }
 
     createRoommateList(){

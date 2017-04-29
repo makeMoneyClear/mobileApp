@@ -55,6 +55,12 @@ export class UserService {
   logOutUser(){
     return this.fireAuth.signOut();
   }
+
+  viewUser(userId : any){
+    var userRef = this.userProfile.child(userId);
+
+    return userRef.once('value');
+  }
   
   UserForgotPassword(email:any){
     return this.fireAuth.sendPasswordResetEmail(email);

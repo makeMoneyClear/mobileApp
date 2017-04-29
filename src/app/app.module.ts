@@ -5,10 +5,11 @@ import { CardsPage } from '../pages/cards/cards';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
-import { Event1Page } from '../pages/events/lastDinner';
+import { DetailsPage } from '../pages/details/details';
 import { BalancePage } from '../pages/balance/balance';
 import { SettingPage } from '../pages/setting/setting';
 import { User } from '../providers/user';
+import { UserService } from '../providers/user-service';
 import { IntroPage } from '../pages/intro/intro';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
@@ -35,7 +36,7 @@ export const firebaseConfig = {
     ContactPage,
     HomePage,
     TabsPage,
-    Event1Page,
+    DetailsPage,
     BalancePage,
     SettingPage,
     IntroPage,
@@ -53,7 +54,7 @@ export const firebaseConfig = {
     ContactPage,
     HomePage,
     TabsPage,
-    Event1Page,
+    DetailsPage,
     BalancePage,
     SettingPage,
     IntroPage,
