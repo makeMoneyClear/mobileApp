@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { UserService } from '../../providers/user-service';
 import { AngularFire, FirebaseListObservable} from 'angularfire2';
-import { NavController } from 'ionic-angular';
+import { NavController, AlertController } from 'ionic-angular';
 
 
 
@@ -14,13 +14,165 @@ export class ContactPage {
 
   private  roommateList : any;
   private  classmateList : any;
+  public roommateName : any;
+  public roommateNote : any;
+  public classateName : any;
+  public classmateNote : any;
   people: FirebaseListObservable<any>;
 
-  constructor(public navCtrl: NavController,private userService: UserService, angFire: AngularFire,) {
+  constructor(public navCtrl: NavController,private userService: UserService, angFire: AngularFire, private alertCtrl:AlertController) {
     this.createRoommateList();
     this.createClassmateList();
+    this.roommateNote = "";
+    this.classmateNote = "";
     this.people = angFire.database.list('/users');
   }
+
+
+      addRoommate(){
+            let prompt = this.alertCtrl.create({
+              title:'Add a new roommate',
+              inputs:[{
+                name:'roommateName',
+                placeholder: 'name',
+              },
+              {
+                name:'roommateNote',
+                placeholder: 'note',
+              },],
+              buttons:[{
+                text:'Cancel',
+                handler:data=>{
+                  console.log('Cancel clicked');
+                }},
+                {
+                text:'Submit',
+                handler:data=>{
+                  this.userService.loadContactInfo("roommate",data.roommateName,data.roommateNote).then(()=>{
+                  
+                      let alert = this.alertCtrl.create({
+                        title:'New roommate added',
+                        buttons:['ok']
+                      });
+                      alert.present();
+                  },error =>{
+                      let alert = this.alertCtrl.create({
+                      title: 'Failed',
+                      subTitle:error.message,
+                      buttons:['OK']
+                    }
+                    );
+                    alert.present();
+                  });
+                },
+              }
+              
+              
+              
+              ]
+            })
+            prompt.present();
+            
+  }
+
+        addClassmate(){
+            let prompt = this.alertCtrl.create({
+              title:'Add a new classmate',
+              inputs:[{
+                name:'classmateName',
+                placeholder:'name',
+              },
+              {
+                name:'classmateNote',
+                placeholder:'note',
+              },],
+              buttons:[{
+                text:'Cancel',
+                handler:data=>{
+                  console.log('Cancel clicked');
+                }},
+                {
+                text:'Submit',
+                handler:data=>{
+                  this.userService.loadContactInfo("196 classmate",data.classmateName,data.classmateNote).then(()=>{
+                  
+                      let alert = this.alertCtrl.create({
+                        title:'New classmate added',
+                        buttons:['ok']
+                      });
+                      alert.present();
+                  },error =>{
+                      let alert = this.alertCtrl.create({
+                      title: 'Failed',
+                      subTitle:error.message,
+                      buttons:['OK']
+                    }
+                    );
+                    alert.present();
+                  });
+                },
+              }
+              
+              
+              
+              ]
+            })
+            prompt.present();
+            
+  }
+
+  addNewGroups(){
+            let prompt = this.alertCtrl.create({
+              title:'Add a new group',
+              inputs:[{
+                placeholder: 'Group Name',
+                name:'groupName',
+              },
+              {
+                placeholder:'Add a member',
+                name:'member',
+              },{
+                placeholder:'Add notes to the member',
+                name:'memberNotes',
+              },],
+              buttons:[{
+                text:'Cancel',
+                handler:data=>{
+                  console.log('Cancel clicked');
+                }},
+                {
+                text:'Submit',
+                handler:data=>{
+                  this.userService.loadContactInfo(data.groupName,data.member,data.memberNotes).then(()=>{
+                      let alert = this.alertCtrl.create({
+                        title:'New group added',
+                        buttons:['ok']
+                      });
+                      alert.present();
+                  },error =>{
+                      let alert = this.alertCtrl.create({
+                      title: 'Failed',
+                      subTitle:error.message,
+                      buttons:['OK']
+                    }
+                    );
+                    alert.present();
+                  });
+                },
+              }
+              
+              
+              
+              ]
+            })
+            prompt.present();
+            
+  }
+
+
+
+
+
 
     createRoommateList(){
     this.userService.loadContact(4)

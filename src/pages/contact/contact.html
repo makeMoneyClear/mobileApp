@@ -2,6 +2,9 @@
   <ion-navbar color = "friend2">
     <ion-title>
       Friends
+       <button ion-button color="friend2" end (click)="addNewGroups()">
+          <ion-icon ios="ios-add-circle" md="md-add-circle"></ion-icon>
+        </button>
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -24,7 +27,11 @@
 <ion-content>
  <!--<ion-item-group>-->
    <ion-item-group>
-      <ion-item-divider color="roommate" ><ion-icon name='people'></ion-icon> Roommates</ion-item-divider>
+      <ion-item-divider color="roommate" ><ion-icon name='people'></ion-icon> Roommates
+      <button ion-button color="roommate" end (click)="addRoommate()">
+          <ion-icon ios="ios-add-circle" md="md-add-circle" end></ion-icon>
+      </button>
+      </ion-item-divider>
       <ion-item  *ngFor = "let roommate of roommateList"><ion-label>{{roommate.name.first}}.{{roommate.name.last}}</ion-label></ion-item>
       <!--<ion-item><ion-icon ios="ios-bowtie" md="md-bowtie" color="girl"></ion-icon>   Tina</ion-item>
       <ion-item><ion-icon ios="ios-bowtie" md="md-bowtie" color="girl"></ion-icon>   May</ion-item>
@@ -34,7 +41,11 @@
 
 
     <ion-item-group>
-      <ion-item-divider color="classmate"><ion-icon name='people'></ion-icon> CS 196 Classmates</ion-item-divider>
+      <ion-item-divider color="classmate"><ion-icon name='people'></ion-icon> CS 196 Classmates
+        <button ion-button color="secondary" end (click) = "addClassmate()">
+          <ion-icon ios="ios-add-circle" md="md-add-circle" end></ion-icon>
+        </button>
+      </ion-item-divider>
       <ion-item *ngFor = "let classmate of classmateList"><ion-icon ios="ios-bowtie" md="md-bowtie" color="girl"></ion-icon><ion-label>{{classmate.name.first}}.{{classmate.name.last}}</ion-label></ion-item>
       <!--<ion-item><ion-icon ios="ios-man" md="md-man" color="primary"></ion-icon>  Jack</ion-item>
       <ion-item><ion-icon ios="ios-bowtie" md="md-bowtie" color="girl"></ion-icon>  Yui</ion-item>
