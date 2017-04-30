@@ -17,7 +17,10 @@ import * as firebase from 'firebase';
 })
 export class HomePage {
   public base64Image: string;
-
+  // public titleList = [];
+  // public detailsList = [];
+  // public amountList = [];
+  // public shareToList =[];
   public title: any;
   public amount:any;
   public shareTo:any

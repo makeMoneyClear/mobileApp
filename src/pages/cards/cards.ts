@@ -18,11 +18,14 @@ import * as firebase from 'firebase';
   providers : [UserService]
 })
 export class CardsPage {
+  public paymentList =[];
+
   firestore = firebase.storage();
   events: FirebaseListObservable<any>;
   imgsource: any;
   constructor(private userService: UserService,public navCtrl: NavController, public alertCtrl: AlertController, public modalCtrl: ModalController, angFire: AngularFire, public zone: NgZone) {
     this.events = angFire.database.list('/Events');
+    this.showPayment();
 
     // for (var n = 0; n < this.events.length; n++) {
     //   var average = this.events[n].price/this.events[n].number;
@@ -35,6 +38,39 @@ export class CardsPage {
   //     console.log(data);
   //   });
   // }
+
+
+
+  //  showPayment(){
+  //     var that = this;
+  //     this.userService.paymentEvent.once('value',function(snapshot){
+  //     snapshot.forEach(function(childSnapshot){
+  //       childSnapshot.forEach(function(childChildSnapshot){
+  //         var keys = childChildSnapshot.key
+  //         that.titleList.push(childChildSnapshot.val().title);
+  //         that.amountList.push(childChildSnapshot.val().amount);
+  //         that.shareToList.push(childChildSnapshot.val().shareTo);
+  //         that.detailsList.push(childChildSnapshot.val().details);
+  //         console.log(keys);
+  //       })
+  //     })
+  //   })
+  // }
+
+     showPayment(){
+      var that = this;
+      this.userService.paymentEvent.once('value',function(snapshot) {
+        snapshot.forEach(function(childSnapshot){
+          that.paymentList.push(childSnapshot.val());
+          var keys = childSnapshot.key;
+         console.log(that.paymentList);
+         console.log(keys);
+        })
+
+    })
+  }
+
+
 
   launchBalancePage(){
 
