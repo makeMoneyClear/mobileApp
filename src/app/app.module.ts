@@ -14,10 +14,16 @@ import { IntroPage } from '../pages/intro/intro';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { AngularFireModule } from 'angularfire2';
+import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 
 // import { ResetPasswordPage } from '../pages/reset-password/reset-password';
 import * as firebase from 'firebase';
 
+const cloudSettings: CloudSettings = {
+  'core': {
+    'app_id': '0e49581d'
+  }
+};
 
 export const firebaseConfig = {
     apiKey: "AIzaSyDvLRc0AQiy7eaIuiuojUHpXTwvOh0A1QA",
@@ -28,6 +34,8 @@ export const firebaseConfig = {
     messagingSenderId: "840233556621"
 
 };
+
+
 
 @NgModule({
   declarations: [
@@ -45,7 +53,9 @@ export const firebaseConfig = {
   ],
   imports: [
     IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireModule.initializeApp(firebaseConfig),
+    IonicModule.forRoot(MyApp),
+    CloudModule.forRoot(cloudSettings)
   ],
   bootstrap: [IonicApp],
   entryComponents: [

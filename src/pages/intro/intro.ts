@@ -15,7 +15,15 @@ import { LoginPage } from '../login/login';
 
 export class IntroPage {
 
-   constructor(public navCtrl: NavController) {}
+   constructor(public navCtrl: NavController) {
+     
+     var element = document.getElementById("skip_button");
+
+     element.addEventListener("click", function(event){
+       alert("HI");
+        navCtrl.push(LoginPage);
+     }, false)
+   }
 
   slides = [
     {
@@ -30,8 +38,10 @@ export class IntroPage {
     }
   ];
 
-  launchLoginPage(){
-    this.navCtrl.push(LoginPage);
-  };
+
+
+  // launchLoginPage(){
+  //   this.navCtrl.push(LoginPage);
+  // };
 
 }

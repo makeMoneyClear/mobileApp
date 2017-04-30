@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+// import { HomePage } from '../pages/home/home';
 import 'rxjs/add/operator/map';
 import * as firebase from 'firebase';
 
@@ -16,28 +17,38 @@ export class UserService {
   public userProfile:any;
   public paymentEvent : any;
   public contact: any;
+  public mUserName : any;
   public myUserId =  firebase.auth().currentUser.uid;
-
+  // public storageRef : any;
   constructor(public http: Http) {
     this.fireAuth = firebase.auth();
     this.userProfile = firebase.database().ref('users');
     this.paymentEvent = firebase.database().ref('users/'+this.myUserId).child('paymentInfo');
     this.contact = firebase.database().ref('users/'+this.myUserId).child('contactBook');
+    this.mUserName = firebase.database().ref('users/'+this.myUserId);
+    // this.storageRef = firebase.storage().ref();
 
   }
 
 
-  signUpUser(email:string,password:string){
+  signUpUser(email:string,password:string,name:string){
     return this.fireAuth.createUserWithEmailAndPassword(email,password)
       .then((newUserCreated)=>{
         this.fireAuth.signInWithEmailAndPassword(email,password)
         .then((authenticatedUser)=>{
           this.userProfile.child(authenticatedUser.uid).set({
-            email:email
+            email:email,
+            userName : name
           })
       })
   })
 }
+
+// uploadImg(){
+//   var filename = Math.floor(Date.now()/1000);
+//   var imageRef = this.storageRef.child(`images${filename}.jpg`);
+//   imageRef.putString(HomePage.base64Image, )
+// }
 
 //  writeUserData(userId, name, email, imageUrl) {
 //   firebase.database().ref('users/' + userId).set({
@@ -54,6 +65,7 @@ export class UserService {
 
 
  loadPaymentInfo(title1:string, amount1:string, shareTo1:string, details1:string):any{
+
   return this.paymentEvent.push({
       title:title1,
       amount:amount1,
@@ -63,6 +75,7 @@ export class UserService {
 }
 
  loadContactInfo(group:string, name:string, other:string):any{
+   
   return this.contact.child(group).child(name).update({
    name : name,
    other: other

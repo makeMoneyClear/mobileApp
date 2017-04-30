@@ -46,14 +46,32 @@
     <ion-input type="money" name = "amount" [(ngModel)] = "amount"></ion-input>
   </ion-item>
 
+    <ion-item>
+    <ion-label color = "dark"class="label">Descriptions: </ion-label>
+    <ion-input type="money" name = "details" [(ngModel)] = "details"></ion-input>
+  </ion-item>
+
   <ion-item>
     <ion-label color = "dark"class="label">Share to @ : </ion-label>
-    <ion-input type="money" name = "shareTo" [(ngModel)] = "shareTo"></ion-input>
-    <!--<ion-item>
-  <ion-label>Daenerys Targaryen</ion-label>
-  <ion-checkbox color="dark" checked="true"></ion-checkbox>
-</ion-item>-->
   </ion-item>
+    <!--<ion-input type="money" name = "shareTo" [(ngModel)] = "shareTo"></ion-input>-->
+    
+    <ion-item *ngFor="let contact of contactList" >
+      <ion-label>{{contact}}</ion-label>
+      <ion-checkbox color="dark" [(ngModel)] = "contact.checked" ></ion-checkbox>
+    </ion-item>
+    
+  
+
+
+   <!--<ion-item-list>
+    <ion-item-divider color = "dark"class="label">Share to @ : </ion-item-divider>
+    <ion-input type="money" name = "shareTo" [(ngModel)] = "shareTo"></ion-input>-->
+    <!--<ion-item>
+      <ion-label>{{contact.name}}</ion-label>
+      <ion-checkbox color="dark" checked="true"></ion-checkbox>
+    </ion-item>
+  </ion-item-list>-->
 
   <!--<ion-item>
     <ion-label color = "dark"class="label">Date: </ion-label>
@@ -65,23 +83,7 @@
     <ion-input type="money" name = "details" [(ngModel)] = "location"></ion-input>
   </ion-item>-->
 
-  <ion-item>
-    <ion-label color = "dark"class="label">Descriptions: </ion-label>
-    <ion-input type="money" name = "details" [(ngModel)] = "details"></ion-input>
-  </ion-item>
 
-  <!--<ion-card >
-
-    <ion-card-content>
-      <ion-card-title>
-        Upload Pictures
-      </ion-card-title>
-      <p>
-        Upload pictures to help others know more about this payment.
-      </p>
-    </ion-card-content>
-
-  </ion-card>-->
 
   <ion-card>
     <ion-card-content>

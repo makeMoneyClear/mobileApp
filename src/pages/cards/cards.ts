@@ -19,6 +19,7 @@ import * as firebase from 'firebase';
 })
 export class CardsPage {
   public paymentList =[];
+  public userName : any;
 
   firestore = firebase.storage();
   events: FirebaseListObservable<any>;
@@ -26,6 +27,8 @@ export class CardsPage {
   constructor(private userService: UserService,public navCtrl: NavController, public alertCtrl: AlertController, public modalCtrl: ModalController, angFire: AngularFire, public zone: NgZone) {
     this.events = angFire.database.list('/Events');
     this.showPayment();
+    this.showUserName();
+    
 
     // for (var n = 0; n < this.events.length; n++) {
     //   var average = this.events[n].price/this.events[n].number;
@@ -56,6 +59,14 @@ export class CardsPage {
   //     })
   //   })
   // }
+
+  showUserName(){
+     var that = this;
+      this.userService.mUserName.child('userName').once('value',snapshot => {
+        that.userName = snapshot.val();
+         console.log(that.userName);
+        })
+  }
 
      showPayment(){
       var that = this;

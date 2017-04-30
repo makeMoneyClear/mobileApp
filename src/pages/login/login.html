@@ -18,6 +18,7 @@
   </div>
   <ion-list inset>
 
+
     <ion-item>
       <ion-label fixed>Email</ion-label>
       <ion-input  type="text" value = "" placeholder="example@xyz.com" [(ngModel)]="emailField"></ion-input>
@@ -26,6 +27,11 @@
     <ion-item>
       <ion-label fixed>Password</ion-label>
       <ion-input type="password" value = "" placeholder="" [(ngModel)]="passwordField"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label fixed>User Name</ion-label>
+      <ion-input  type="text" value = "" placeholder="Only for sign up" [(ngModel)]="nameField"></ion-input>
     </ion-item>
 
   </ion-list>
@@ -42,7 +48,7 @@
     <div class="spacer" style="height: 20px;"></div>
     <button ion-button block (click)="userSignUp();">Create an account</button>
     <div class="spacer" style="height: 20px;"></div>
-    <button ion-button clear full (click)="gotPassword();">Forget Password?</button>
+    <button ion-button clear full (click)="forgotPassword();">Forget Password?</button>
 
   </ion-content>
 </ion-content>
