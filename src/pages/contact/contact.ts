@@ -12,21 +12,74 @@ import { NavController, AlertController } from 'ionic-angular';
 })
 export class ContactPage {
 
-  private  roommateList : any;
-  private  classmateList : any;
+  private  roommateList = [];
+  private  classmateList = [];
   public roommateName : any;
   public roommateNote : any;
   public classateName : any;
   public classmateNote : any;
+  
   people: FirebaseListObservable<any>;
 
   constructor(public navCtrl: NavController,private userService: UserService, angFire: AngularFire, private alertCtrl:AlertController) {
-    this.createRoommateList();
-    this.createClassmateList();
+    // this.createRoommateList();
+    // this.createClassmateList();
+    this.showContact();
     this.roommateNote = "";
     this.classmateNote = "";
     this.people = angFire.database.list('/users');
   }
+
+  // showContact(){
+  //   this.userService.contact.child('roommate').on('value', snapshot=>{
+  //     snapshot.forEach(function(childSnapshot){
+  //       var data = childSnapshot.val();
+  //       this.roommateList.push(data.name);
+  //       console.log(this.roommateList);
+  //     })
+  //   })
+  // }
+  
+  
+    showContact(){
+      var that = this;
+    this.userService.contact.child('roommate').once('value',function(snapshot){
+      snapshot.forEach(function(childSnapshot){
+        that.roommateList.push(childSnapshot.key);
+        var childname = childSnapshot.val().name;
+        console.log(that.roommateList[0]);
+        console.log(childname);
+      })
+    });
+
+    this.userService.contact.child('196 classmate').once('value',function(snapshot){
+      snapshot.forEach(function(childSnapshot){
+        that.classmateList.push(childSnapshot.key);
+      })
+    })
+  
+  }
+
+    //   showContact(){
+    //   var that = this;
+    // this.userService.contact.once('value',function(snapshot){
+    //   snapshot.forEach(function(childSnapshot){
+    //     childSnapshot.forEach(function(childChildSnapshot){
+    //       that.roommateList.push(childChildSnapshot.key);
+    //       var childname = childChildSnapshot.val().name;
+    //       console.log(that.roommateList[0]);
+    //       console.log(childname);
+    //     })
+    //   })
+    // });
+
+    // this.userService.contact.child('196 classmate').once('value',function(snapshot){
+    //   snapshot.forEach(function(childSnapshot){
+    //     that.classmateList.push(childSnapshot.key);
+    //   })
+    // })
+
+    
 
 
       addRoommate(){
@@ -49,7 +102,9 @@ export class ContactPage {
                 text:'Submit',
                 handler:data=>{
                   this.userService.loadContactInfo("roommate",data.roommateName,data.roommateNote).then(()=>{
-                  
+                    this.roommateList = [];
+                    this.classmateList = [];
+                   this.showContact();
                       let alert = this.alertCtrl.create({
                         title:'New roommate added',
                         buttons:['ok']
@@ -174,19 +229,19 @@ export class ContactPage {
 
 
 
-    createRoommateList(){
-    this.userService.loadContact(4)
-      .then(data => {
-        this.roommateList = data;
-      })
+  //   createRoommateList(){
+  //   this.userService.loadContact(4)
+  //     .then(data => {
+  //       this.roommateList = data;
+  //     })
 
-  }
+  // }
 
-      createClassmateList(){
-    this.userService.loadContact(10)
-      .then(data => {
-        this.classmateList = data;
-      })
+  //     createClassmateList(){
+  //   this.userService.loadContact(10)
+  //     .then(data => {
+  //       this.classmateList = data;
+  //     })
 
   }
 
@@ -206,5 +261,4 @@ export class ContactPage {
   //    this.map=new google.map.Map(this.mapElement.nativeElement, mapOptions);
   // }
 
-}
 

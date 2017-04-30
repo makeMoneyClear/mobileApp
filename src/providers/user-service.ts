@@ -15,11 +15,14 @@ export class UserService {
   public fireAuth: any;
   public userProfile:any;
   public paymentEvent : any;
+  public contact: any;
+  public myUserId =  firebase.auth().currentUser.uid;
 
   constructor(public http: Http) {
     this.fireAuth = firebase.auth();
     this.userProfile = firebase.database().ref('users');
-    this.paymentEvent = firebase.database().ref('paymentEvent');
+    this.paymentEvent = firebase.database().ref('users/'+this.myUserId).child('paymentInfo');
+    this.contact = firebase.database().ref('users/'+this.myUserId).child('contactBook');
 
   }
 
@@ -34,6 +37,36 @@ export class UserService {
           })
       })
   })
+}
+
+//  writeUserData(userId, name, email, imageUrl) {
+//   firebase.database().ref('users/' + userId).set({
+//     username: name,
+//     email: email,
+//     profile_picture : imageUrl
+//   });
+// }
+
+// downloadRoommateContactInfo():any{
+//   var contact = this.contact.child('roommate');
+//   contact.on('value');
+// }
+
+
+ loadPaymentInfo(title1:string, amount1:string, shareTo1:string, details1:string):any{
+  return this.paymentEvent.push({
+      title:title1,
+      amount:amount1,
+      shareTo:shareTo1,
+      details:details1
+  });
+}
+
+ loadContactInfo(group:string, name:string, other:string):any{
+  return this.contact.child(group).child(name).update({
+   name : name,
+   other: other
+  });
 }
 
 //   createPayment(title:string,amount:string,shareTo:string,details:string){
@@ -58,8 +91,7 @@ export class UserService {
 
   viewUser(userId : any){
     var userRef = this.userProfile.child(userId);
-
-    return userRef.once('value');
+    return userRef.once('value'); //onlu use once
   }
   
   UserForgotPassword(email:any){
