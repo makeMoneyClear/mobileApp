@@ -3,7 +3,7 @@
   <name>Make Money Clear</name>
   <description>Easily split money between friends!</description>
   <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
-  <content src="index.html"/>
+  <content src="http://10.192.121.172:8100" original-src="index.html"/>
   <access origin="*"/>
   <allow-navigation href="http://ionic.local/*"/>
   <allow-navigation href="http://10.192.121.172:8100"/>
