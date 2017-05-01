@@ -22,10 +22,10 @@ export class CardsPage {
   public userName : any;
 
   firestore = firebase.storage();
-  events: FirebaseListObservable<any>;
+  // events: FirebaseListObservable<any>;
   imgsource: any;
   constructor(private userService: UserService,public navCtrl: NavController, public alertCtrl: AlertController, public modalCtrl: ModalController, angFire: AngularFire, public zone: NgZone) {
-    this.events = angFire.database.list('/Events');
+    // this.events = angFire.database.list('/Events');
     this.showPayment();
     this.showUserName();
     
@@ -113,11 +113,17 @@ export class CardsPage {
   }
 
 
-  openEvent(item){
+  openEvent( paymentTitle:string, paymentAMmount : string){
     this.navCtrl.push(DetailsPage,{
-      item:item
+       passPaymentTille : paymentTitle,
+       passPaymentAmount : paymentAMmount
     })
+    // this.navCtrl.push(DetailsPage, {
+    //   id: "123",
+    //   name: "Carl"
+    // });
   }
+
 
   doPay(){
     let NotPaid = this.alertCtrl.create({
@@ -157,7 +163,6 @@ export class CardsPage {
   }
 
   userLogOut(){
-    // this.userService.logOutUser();
 
     let logOut = this.alertCtrl.create({
       title: 'Current User Loged out',

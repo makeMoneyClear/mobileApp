@@ -6,7 +6,7 @@
 -->
 <ion-header>
   <ion-navbar>
-  <ion-title>{{event.name}}</ion-title>
+  <ion-title>event</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -14,8 +14,8 @@
     <ion-slide style="background-color: white">
       <ion-item >
         <ion-col center text-center>
-            <h2>On {{event.date}}</h2>
-            <h3>At {{event.where}}</h3>
+            <h2>{{event}}</h2>
+<!--             <h3>At {{event.where}}</h3>
             <h2>You attended {{event.name}} with</h2>
             <h1>{{event.number}} sage participants:</h1>
             <ion-scroll scrollX="true" style="width:100vw;height:50px">
@@ -24,12 +24,12 @@
             <h1> for ${{ event.price }}</h1>
             <h3>According to Sage Convention</h3>
             <h2>You Should Pay:</h2>
-            <h1>${{event.ave}}</h1>
+            <h1>${{event.ave}}</h1> -->
         </ion-col>
       </ion-item>
     </ion-slide>
 
-    <ion-slide style="white-space: normal;">
+<!--     <ion-slide style="white-space: normal;">
       <ion-item class="item item-text-wrap">
         <ion-col center text-center>
         <img src="assets/img/{{event.name}}.jpg" width="100%"/>
@@ -38,5 +38,5 @@
           </p>
         </ion-col>
       </ion-item>
-      </ion-slide>
+      </ion-slide> -->
 </ion-slides>

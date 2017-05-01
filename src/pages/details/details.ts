@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { AngularFire, FirebaseListObservable} from 'angularfire2';
+import { CardsPage } from '../cards/cards'
 import { UserService } from '../../providers/user-service';
 /*
   Generated class for the Details page.
@@ -14,10 +15,19 @@ import { UserService } from '../../providers/user-service';
   providers : [UserService]
 })
 export class DetailsPage {
-	event: any;
+	 public eventId: any;
+   public eventName : any;
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private userService: UserService, angFire: AngularFire) {
-  	this.event = navParams.get('item'); 
+  	// this.event = navParams.get('item'); 
+     this.eventId = navParams.get('passPaymentTille');
+     console.log(this.eventId);
+     this.eventName = navParams.get('passPaymentAmount');
+     console.log(this.eventName);
+
+     // let name = navParams.get('name');
+     // this.event = id;
   }
 
 

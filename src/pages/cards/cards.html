@@ -119,7 +119,7 @@
   <!--<ion-item *ngFor="let payment of paymentList | async">-->
   <ion-item *ngFor="let payment of paymentList">
     <ion-card>
-      <ion-item  color = "cardTitle" (click)="openEvent(event)">
+      <ion-item  color = "cardTitle" (click)="openEvent(payment.title, payment.amount)">
         <h2>{{payment.title}}</h2>
         <p>Shared Payment : $ {{payment.amount}}</p>
       </ion-item>

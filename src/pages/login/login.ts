@@ -80,7 +80,7 @@ export class LoginPage {
         //successful
         // let leadToTabsPage = this.modalCtrl.create(TabsPage);
         // leadToTabsPage.present();
-        this.navCtrl.push(TabsPage);
+        this.navCtrl.setRoot(TabsPage);
       },error =>{
         let alert = this.alertCtrl.create({
           title:'Error logging in',
