@@ -157,7 +157,7 @@ export class CardsPage {
   }
 
   userLogOut(){
-    this.userService.logOutUser();
+    // this.userService.logOutUser();
 
     let logOut = this.alertCtrl.create({
       title: 'Current User Loged out',

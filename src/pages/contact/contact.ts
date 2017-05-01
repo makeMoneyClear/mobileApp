@@ -150,7 +150,9 @@ export class ContactPage {
                 text:'Submit',
                 handler:data=>{
                   this.userService.loadContactInfo("196 classmate",data.classmateName,data.classmateNote).then(()=>{
-                  
+                   this.roommateList = [];
+                    this.classmateList = [];
+                   this.showContact();
                       let alert = this.alertCtrl.create({
                         title:'New classmate added',
                         buttons:['ok']

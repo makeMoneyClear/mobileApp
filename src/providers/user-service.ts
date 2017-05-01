@@ -19,14 +19,14 @@ export class UserService {
   public contact: any;
   public mUserName : any;
   public myUserId =  firebase.auth().currentUser.uid;
-  // public storageRef : any;
+  public storageRef : any;
   constructor(public http: Http) {
     this.fireAuth = firebase.auth();
     this.userProfile = firebase.database().ref('users');
     this.paymentEvent = firebase.database().ref('users/'+this.myUserId).child('paymentInfo');
     this.contact = firebase.database().ref('users/'+this.myUserId).child('contactBook');
     this.mUserName = firebase.database().ref('users/'+this.myUserId);
-    // this.storageRef = firebase.storage().ref();
+    this.storageRef = firebase.storage().ref();
 
   }
 
@@ -36,7 +36,7 @@ export class UserService {
       .then((newUserCreated)=>{
         this.fireAuth.signInWithEmailAndPassword(email,password)
         .then((authenticatedUser)=>{
-          this.userProfile.child(authenticatedUser.uid).set({
+          this.userProfile.child(authenticatedUser.email).set({
             email:email,
             userName : name
           })
