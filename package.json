@@ -33,6 +33,7 @@
   "devDependencies": {
     "@ionic/app-scripts": "1.1.4",
     "@types/request": "0.0.30",
+    "rollup-plugin-node-resolve": "^3.0.0",
     "typescript": "2.0.9"
   },
   "cordovaPlugins": [
