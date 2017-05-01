@@ -37,8 +37,8 @@
     <feature name="EmailComposer">
         <param name="android-package" value="de.appplant.cordova.emailcomposer.EmailComposer" />
     </feature>
-    <name>GroupProject</name>
-    <description>An awesome Ionic/Cordova app.</description>
+    <name>Make Money Clear</name>
+    <description>Easily split money between friends!</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
     <content original-src="index.html" src="http://10.192.121.172:8100" />
     <access origin="*" />
