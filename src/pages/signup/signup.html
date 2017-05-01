@@ -16,11 +16,11 @@
   <img src="assets/img/user-blue.png" width="80px"/>
   </div>
 
-  <ion-list>
+  <ion-list inset>
 
     <ion-item>
       <ion-label color = "dark" class="label">Email:</ion-label>
-      <ion-input type="text" placeholder="Email" name = "userEmail" placeholder = "example@xyz.com"></ion-input>
+      <ion-input type= "text" placeholder="Email" name = "userEmail" placeholder = "example@xyz.com"></ion-input>
     </ion-item>
 
     <ion-item>
@@ -30,13 +30,13 @@
 
     <ion-item>
       <ion-label color = "dark" class="label">Confirm Password:</ion-label>
-      <ion-input type="password" name = "userConfirmPw"></ion-input>
+      <ion-input type= "password" name = "userConfirmPw"></ion-input>
     </ion-item>
 
   </ion-list>
 
   <div padding>
-    <button ion-button color="primary" block (click)="confirm()">Create Account</button>
+    <button ion-button color= "secondary" block (click)="confirm()">Create Account</button>
     <!--<button ion-button color="primary" block (click)="redirectToResetPag()">Reset Password</button>-->
 
   </div>
