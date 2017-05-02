@@ -79,7 +79,7 @@ export class CardsPage {
           that.paymentList.push(childSnapshot.val());
           var keys = childSnapshot.key;
          console.log(that.paymentList[0].title);
-         console.log(keys);
+        //  console.log(keys);
         })
 
     }
@@ -91,28 +91,8 @@ export class CardsPage {
 
 
   launchBalancePage(){
-
-    // console.log(this.userService.username);
-
     let modal = this.modalCtrl.create(BalancePage);
-
-    // modal.onDidDismiss((data)=>{
-    //   console.log(data);
-    // })
-
     modal.present();
-
-    // let data = {
-    //   title:'fjeiw',
-    //   infew:[
-    //       'ha',
-    //     'qwfw'
-    //   ],
-    //   time: 'dieo'
-    // };
-
-
-    // this.navCtrl.push(BalancePage,data);
   }
 
   launchSettingPage(){
@@ -125,12 +105,6 @@ export class CardsPage {
        passPaymentTille : paymentTitle,
        passPaymentAmount : paymentAMmount
     })
-
-    // let popover = this.popoverCtrl.create(DetailsPage);
-    // popover.present({
-    //    passPaymentTille : paymentTitle,
-    //    passPaymentAmount : paymentAMmount
-    // })
   }
 
 
@@ -172,6 +146,8 @@ export class CardsPage {
   }
 
   userLogOut(){
+
+    this.paymentList = [];
 
     let logOut = this.alertCtrl.create({
       title: 'Current User Logged out',

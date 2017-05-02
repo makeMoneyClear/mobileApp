@@ -19,7 +19,7 @@ export class ContactPage {
   public classateName : any;
   public classmateNote : any;
   
-  people: FirebaseListObservable<any>;
+  // people: FirebaseListObservable<any>;
 
   constructor(public navCtrl: NavController,private userService: UserService, angFire: AngularFire, private alertCtrl:AlertController) {
     // this.createRoommateList();
@@ -27,7 +27,7 @@ export class ContactPage {
     this.showContact();
     this.roommateNote = "";
     this.classmateNote = "";
-    this.people = angFire.database.list('/users');
+    // this.people = angFire.database.list('/users');
   }
 
   // showContact(){
