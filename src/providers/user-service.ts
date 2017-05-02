@@ -120,13 +120,15 @@ export class UserService {
 // }
 
 
- loadPaymentInfo(title1:string, amount1:string, shareTo1:string, details1:string):any{
+ loadPaymentInfo(title1:string, amount1:string, shareTo1:string, details1:string, split1:string, average1:string):any{
 
   return this.paymentEvent.push({
       title:title1,
       amount:amount1,
+      split:split1,
       shareTo:shareTo1,
-      details:details1
+      details:details1,
+      average:average1
   });
 }
 

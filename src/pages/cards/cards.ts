@@ -70,7 +70,7 @@ export class CardsPage {
         })
   }
 
-     showPayment(){
+     showPayment(): any{
       var that = this;
       this.userService.paymentEvent.once('value',function(snapshot) {
         snapshot.forEach(function(childSnapshot){

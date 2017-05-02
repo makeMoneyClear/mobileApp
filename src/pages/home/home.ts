@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, AlertController } from 'ionic-angular';
 import { Camera } from 'ionic-native';
 import { UserService } from '../../providers/user-service';
+import { CardsPage } from '../cards/cards';
 // import { AngularFire,FirebaseListObservable} from'angularfire2';
 
 import * as firebase from 'firebase';
@@ -12,7 +13,7 @@ import * as firebase from 'firebase';
 @Component({
   selector:'page-home',
   templateUrl: 'home.html',
-  providers : [UserService]
+  providers : [UserService, CardsPage]
 })
 export class HomePage {
   public base64Image: string;
@@ -22,6 +23,8 @@ export class HomePage {
   // public shareToList =[];
   public title: any;
   public amount:any;
+  public split: any;
+  public average: any;
   public shareTo:any
   public details : any;
   public picture : any;
@@ -42,9 +45,10 @@ export class HomePage {
   // constructor(public navCtrl: NavController, public  alertCtrl: AlertController, public angFire:AngularFire) { 
     // this.payment = angFire.database.list('/Payment');
 
-  constructor(private userService: UserService,public navCtrl: NavController, public  alertCtrl: AlertController) { 
+  constructor(private cardPage : CardsPage, private userService: UserService,public navCtrl: NavController, public  alertCtrl: AlertController) { 
     this.showContact();
-  
+
+    
   }
 
    showContact(){
@@ -94,7 +98,9 @@ export class HomePage {
 // }
 
    createPayment(){
-     this.userService.loadPaymentInfo(this.title,this.amount,this.shareTo,this.details)
+    var that = this;
+     this.average = (parseInt(this.amount)/parseInt(this.split)).toFixed(2);
+     this.userService.loadPaymentInfo(this.title,this.amount,this.shareTo,this.details,this.split,this.average)
       .then(paymentData =>{
         let successAlert = this.alertCtrl.create({
           title:'New payment event created',
@@ -103,8 +109,17 @@ export class HomePage {
         successAlert.present();
         this.title = '';
         this.amount = '';
+        this.split = '';
         this.shareTo = '';
         this.details = '';
+        this.average = '';
+
+        // that.cardPage.paymentList = [];
+        // that.cardPage.showPayment().then(()=>{
+        //   console.log('triggered');
+        // });
+
+
         
       },error =>{
         let alert = this.alertCtrl.create({

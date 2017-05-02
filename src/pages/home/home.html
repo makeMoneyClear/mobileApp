@@ -46,16 +46,23 @@
     <ion-input type="money" name = "amount" [(ngModel)] = "amount"></ion-input>
   </ion-item>
 
-    <ion-item>
+  <ion-item>
+    <ion-label color = "dark"class="label">Split Into </ion-label>
+    <ion-input type="money" name = "split" [(ngModel)] = "split"></ion-input>
+  </ion-item>
+
+  <ion-item>
     <ion-label color = "dark"class="label">Descriptions: </ion-label>
-    <ion-input type="money" name = "details" [(ngModel)] = "details"></ion-input>
+    <ion-input type="text" name = "details" [(ngModel)] = "details"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label color = "dark"class="label">Share to @ : </ion-label>
-  </ion-item>
-    <!--<ion-input type="money" name = "shareTo" [(ngModel)] = "shareTo"></ion-input>-->
+    <ion-input type="money" name = "shareTo" [(ngModel)] = "shareTo"></ion-input>
     
+
+  </ion-item>
+   
     <ion-item *ngFor="let contact of contactList" >
       <ion-label>{{contact}}</ion-label>
       <ion-checkbox color="dark" [(ngModel)] = "contact.checked" ></ion-checkbox>
