@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, AlertController } from 'ionic-angular';
 import { Camera } from 'ionic-native';
 import { UserService } from '../../providers/user-service';
+import { CardsPage } from '../cards/cards';
 // import { AngularFire,FirebaseListObservable} from'angularfire2';
 
 import * as firebase from 'firebase';
@@ -12,7 +13,7 @@ import * as firebase from 'firebase';
 @Component({
   selector:'page-home',
   templateUrl: 'home.html',
-  providers : [UserService]
+  providers : [UserService, CardsPage]
 })
 export class HomePage {
   public base64Image: string;
@@ -42,7 +43,7 @@ export class HomePage {
   // constructor(public navCtrl: NavController, public  alertCtrl: AlertController, public angFire:AngularFire) { 
     // this.payment = angFire.database.list('/Payment');
 
-  constructor(private userService: UserService,public navCtrl: NavController, public  alertCtrl: AlertController) { 
+  constructor(private cardPage : CardsPage, private userService: UserService,public navCtrl: NavController, public  alertCtrl: AlertController) { 
     this.showContact();
   
   }
@@ -94,6 +95,7 @@ export class HomePage {
 // }
 
    createPayment(){
+     var that = this;
      this.userService.loadPaymentInfo(this.title,this.amount,this.shareTo,this.details)
       .then(paymentData =>{
         let successAlert = this.alertCtrl.create({
@@ -105,6 +107,9 @@ export class HomePage {
         this.amount = '';
         this.shareTo = '';
         this.details = '';
+        // that.cardPage.paymentList = [];
+        // that.cardPage.showPayment().then(console.log('tiiii'));
+        
         
       },error =>{
         let alert = this.alertCtrl.create({
