@@ -1,5 +1,5 @@
 import { Component , NgZone } from '@angular/core';
-import { NavController, ModalController} from 'ionic-angular';
+import { NavController, ModalController,PopoverController} from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { BalancePage } from '../balance/balance';
 import { SettingPage } from '../setting/setting';
@@ -24,8 +24,10 @@ export class CardsPage {
   firestore = firebase.storage();
   // events: FirebaseListObservable<any>;
   imgsource: any;
-  constructor(private userService: UserService,public navCtrl: NavController, public alertCtrl: AlertController, public modalCtrl: ModalController, angFire: AngularFire, public zone: NgZone) {
+
+  constructor(public popoverCtrl: PopoverController,private userService: UserService,public navCtrl: NavController, public alertCtrl: AlertController, public modalCtrl: ModalController, angFire: AngularFire, public zone: NgZone) {
     // this.events = angFire.database.list('/Events');
+    
     this.showPayment();
     this.showUserName();
     
@@ -113,15 +115,17 @@ export class CardsPage {
   }
 
 
-  openEvent( paymentTitle:string, paymentAMmount : string){
+  openEvent(paymentTitle:string, paymentAMmount : string){
     this.navCtrl.push(DetailsPage,{
        passPaymentTille : paymentTitle,
        passPaymentAmount : paymentAMmount
     })
-    // this.navCtrl.push(DetailsPage, {
-    //   id: "123",
-    //   name: "Carl"
-    // });
+
+    // let popover = this.popoverCtrl.create(DetailsPage);
+    // popover.present({
+    //    passPaymentTille : paymentTitle,
+    //    passPaymentAmount : paymentAMmount
+    // })
   }
 
 
@@ -175,10 +179,10 @@ export class CardsPage {
         },
       ]
     });
-    logOut.present()
-    this.userService.logOutUser().then(()=>{
+    logOut.present();
+  
       this.navCtrl.setRoot(LoginPage);
-    });
+    
     
 
 

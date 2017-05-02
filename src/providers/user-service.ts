@@ -12,6 +12,22 @@ import * as firebase from 'firebase';
 */
 @Injectable()
 export class UserService {
+  // private data : any;
+  // public fireAuth: any;
+  // public userProfile:any;
+  // public paymentEvent : any;
+  // public contact: any;
+  // public mUserName : any;
+  // public myUserId =  firebase.auth().currentUser.uid;
+  // public storageRef : any;
+  // constructor(public http: Http) {
+  //   this.fireAuth = firebase.auth();
+  //   this.userProfile = firebase.database().ref('users');
+  //   this.paymentEvent = firebase.database().ref('users/'+this.myUserId).child('paymentInfo');
+  //   this.contact = firebase.database().ref('users/'+this.myUserId).child('contactBook');
+  //   this.mUserName = firebase.database().ref('users/'+this.myUserId);
+  //   this.storageRef = firebase.storage().ref();
+
   private data : any;
   public fireAuth: any;
   public userProfile:any;
@@ -31,11 +47,26 @@ export class UserService {
   }
 
 
+  // return this.contact.child(group).child(name).update({
+  //  name : name,
+  //  other: other
+  // });
+
   signUpUser(email:string,password:string,name:string){
+    console.log('processing user sign up');
+    console.log (email);
+    console.log (password);
+    console.log (name);
+    
+
     return this.fireAuth.createUserWithEmailAndPassword(email,password)
       .then((newUserCreated)=>{
         this.fireAuth.signInWithEmailAndPassword(email,password)
         .then((authenticatedUser)=>{
+
+          console.log('processing user sign up yo pass the data to database');
+          console.log(authenticatedUser.email);
+          // this.userProfile.child(authenticatedUser.email).set({
           this.userProfile.child(authenticatedUser.email).set({
             email:email,
             userName : name
@@ -43,6 +74,31 @@ export class UserService {
       })
   })
 }
+
+//   signUpUser(email:string,password:string,name:string){
+//     console.log('processing user sign up');
+//     console.log (email);
+//     console.log (password);
+//     console.log (name);
+    
+//   var that = this;
+//     return this.fireAuth.createUserWithEmailAndPassword(email,password)
+    
+//       .then((newUserCreated)=>{
+//         this.fireAuth.signInWithEmailAndPassword(email,password)
+//         .then((authenticatedUser)=>{
+
+//           console.log('processing user sign up yo pass the data to database');
+//           console.log(authenticatedUser.email);
+//           // this.userProfile.child(authenticatedUser.email).set({
+//           return that.userProfile.child(authenticatedUser.email).set({
+//             email : email,
+//             name : name
+//           })
+//           // console.log('lalalalalalalal');
+//       })
+//   })
+// }
 
 // uploadImg(){
 //   var filename = Math.floor(Date.now()/1000);

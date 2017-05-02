@@ -44,6 +44,14 @@ export class MyApp {
   //   }
   // });
 
+  firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    console.log(user.email);
+  } else {
+    console.log('no user');
+  }
+});
+
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.

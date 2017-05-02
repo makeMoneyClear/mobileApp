@@ -15,16 +15,16 @@ import { UserService } from '../../providers/user-service';
   providers : [UserService]
 })
 export class DetailsPage {
-	 public eventId: any;
-   public eventName : any;
+	 public paymentTitie: any;
+   public paymentAmount : any;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private userService: UserService, angFire: AngularFire) {
   	// this.event = navParams.get('item'); 
-     this.eventId = navParams.get('passPaymentTille');
-     console.log(this.eventId);
-     this.eventName = navParams.get('passPaymentAmount');
-     console.log(this.eventName);
+     this.paymentTitie = navParams.get('passPaymentTille');
+     console.log(this.paymentTitie);
+     this.paymentAmount = navParams.get('passPaymentAmount');
+     console.log(this.paymentAmount);
 
      // let name = navParams.get('name');
      // this.event = id;
