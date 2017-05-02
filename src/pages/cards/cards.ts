@@ -70,13 +70,7 @@ export class CardsPage {
         })
   }
 
-<<<<<<< HEAD
      showPayment():any {
-||||||| merged common ancestors
-     showPayment(){
-=======
-     showPayment(): any{
->>>>>>> 7663c476af9f073667918dc8026937df07567f71
       var that = this;
       this.userService.paymentEvent.once('value',function(snapshot) {
         snapshot.forEach(function(childSnapshot){
@@ -175,7 +169,7 @@ export class CardsPage {
   userLogOut(){
 
     let logOut = this.alertCtrl.create({
-      title: 'Current User Loged out',
+      title: 'Current User Logged out',
       buttons:[
         {
           text:'OK',
