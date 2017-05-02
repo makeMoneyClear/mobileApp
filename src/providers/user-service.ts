@@ -140,17 +140,17 @@ var paymentEvent = firebase.database().ref('users/').child(this.currentUser.disp
   loadPaymentInfoShareTo(title1:string, amount1:string, shareTo1:string, details1:string, split1:string, average1:string):any{
     console.log('triggered load payment shareTo');
     console.log(shareTo1);
-  var paymentEvent = firebase.database().ref('users/').child(shareTo1).child('paymentInfo');
+      var paymentEvent = firebase.database().ref('users/').child(shareTo1).child('paymentInfo');
    console.log(this.paymentEvent.key);
 
-  return this.paymentEvent.push({
-      title:title1,
-      amount:amount1,
-      split:split1,
-      shareTo:shareTo1,
-      details:details1,
-      average:average1
-  });
+        return this.paymentEvent.push({
+            title:title1,
+            amount:amount1,
+            split:split1,
+            shareTo:shareTo1,
+            details:details1,
+            average:average1
+        });
  }
 
 

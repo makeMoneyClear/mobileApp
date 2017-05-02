@@ -3,6 +3,7 @@ import { NavController, AlertController, IonicApp,IonicModule,IonicErrorHandler 
 import { Camera } from 'ionic-native';
 import { UserService } from '../../providers/user-service';
 import { CardsPage } from '../cards/cards';
+// import { ContactPage } from '../contact/contact';
 // import { AngularFire,FirebaseListObservable} from'angularfire2';
 
 import * as firebase from 'firebase';
@@ -17,10 +18,6 @@ import * as firebase from 'firebase';
 })
 export class HomePage {
   public base64Image: string;
-  // public titleList = [];
-  // public detailsList = [];
-  // public amountList = [];
-  // public shareToList =[];
   public title: any;
   public amount:any;
   public split: any;
@@ -30,20 +27,6 @@ export class HomePage {
   public picture : any;
   public contactList = [];
   public chickedContactList = [];
-  // public storageRef : any;
-
-
-
-  // static get paramaters(){
-  //   return [NgZone];
-  // }
-
-  // constructor(ngzone){
-  //   this.ngzone = ngzone;
-  // }
-
-  // constructor(public navCtrl: NavController, public  alertCtrl: AlertController, public angFire:AngularFire) { 
-    // this.payment = angFire.database.list('/Payment');
 
   constructor(private userService: UserService,public navCtrl: NavController, public  alertCtrl: AlertController) { 
     this.showContact();
@@ -110,11 +93,12 @@ export class HomePage {
               console.log(that.shareTo);
 
               if (item.valueOf() == that.shareTo.valueOf()){
-                console.log(item.valueOf());
                 console.log(that.shareTo.valueOf());
 
                 // this.userService.loadPaymentInfoShareTo(that.title,that.amount,that.shareTo,that.details,that.split,that.average).then(()=>{
-                //     console.log('share succeed');
+                    console.log('user matched');                
+                    console.log(item.valueOf());
+
                 // })
 
 
@@ -147,7 +131,7 @@ export class HomePage {
         })
         alert.present();
         // alert("error logging in:" + error.message);
-      }).then((paymentData)=>{
+      }).then(() => {
           this.userService.loadPaymentInfoShareTo(that.title,that.amount,that.shareTo,that.details,that.split,that.average).then(()=>{
              console.log(that.shareTo);
                 console.log('share succeed');
