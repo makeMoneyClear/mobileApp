@@ -23,6 +23,8 @@ export class HomePage {
   // public shareToList =[];
   public title: any;
   public amount:any;
+  public split: any;
+  public average: any;
   public shareTo:any
   public details : any;
   public picture : any;
@@ -45,7 +47,8 @@ export class HomePage {
 
   constructor(private cardPage : CardsPage, private userService: UserService,public navCtrl: NavController, public  alertCtrl: AlertController) { 
     this.showContact();
-  
+
+    
   }
 
    showContact(){
@@ -95,8 +98,16 @@ export class HomePage {
 // }
 
    createPayment(){
+<<<<<<< HEAD
      var that = this;
      this.userService.loadPaymentInfo(this.title,this.amount,this.shareTo,this.details)
+||||||| merged common ancestors
+     this.userService.loadPaymentInfo(this.title,this.amount,this.shareTo,this.details)
+=======
+    var that = this;
+     this.average = (parseInt(this.amount)/parseInt(this.split)).toFixed(2);
+     this.userService.loadPaymentInfo(this.title,this.amount,this.shareTo,this.details,this.split,this.average)
+>>>>>>> 7663c476af9f073667918dc8026937df07567f71
       .then(paymentData =>{
         let successAlert = this.alertCtrl.create({
           title:'New payment event created',
@@ -105,11 +116,24 @@ export class HomePage {
         successAlert.present();
         this.title = '';
         this.amount = '';
+        this.split = '';
         this.shareTo = '';
         this.details = '';
+<<<<<<< HEAD
         // that.cardPage.paymentList = [];
         // that.cardPage.showPayment().then(console.log('tiiii'));
         
+||||||| merged common ancestors
+=======
+        this.average = '';
+
+        // that.cardPage.paymentList = [];
+        // that.cardPage.showPayment().then(()=>{
+        //   console.log('triggered');
+        // });
+
+
+>>>>>>> 7663c476af9f073667918dc8026937df07567f71
         
       },error =>{
         let alert = this.alertCtrl.create({
