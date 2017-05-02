@@ -42,7 +42,7 @@
   </ion-item>
 
   <ion-item>
-    <ion-label color = "dark"class="label">Amount:$ </ion-label>
+    <ion-label color = "dark"class="label">Amount: $ </ion-label>
     <ion-input type="money" name = "amount" [(ngModel)] = "amount"></ion-input>
   </ion-item>
 
@@ -52,12 +52,12 @@
   </ion-item>
 
   <ion-item>
-    <ion-label color = "dark"class="label">Descriptions: </ion-label>
+    <ion-label color = "dark"class="label">Description: </ion-label>
     <ion-input type="text" name = "details" [(ngModel)] = "details"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-label color = "dark"class="label">Share to @ : </ion-label>
+    <ion-label color = "dark"class="label">Share to: </ion-label>
     <ion-input type="money" name = "shareTo" [(ngModel)] = "shareTo"></ion-input>
     
 
@@ -101,9 +101,7 @@
         Upload pictures to help others know more about this payment.
       </p>
      <button ion-button block (click)="takePicture()">Take a Picture</button>
-
-      <h2>Latest Picture:</h2>
-
+     
       <div>
       <img [src]="base64Image" *ngIf="base64Image" />
       </div>
