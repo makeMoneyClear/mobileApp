@@ -17,7 +17,7 @@ export class IntroPage {
   public element :any;
 
    constructor(public navCtrl: NavController) {
-     
+    
      this.element = document.getElementById("skip_button");
 
   //    this.element.addEventListener("click", function(event){
