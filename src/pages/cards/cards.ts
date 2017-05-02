@@ -149,12 +149,9 @@ export class CardsPage {
   }
 
   userLogOut(){
-<<<<<<< HEAD
-=======
 
     this.paymentList = [];
 
->>>>>>> e86bc463ecfaa8c44d556760a14dad716b6194fd
     let logOut = this.alertCtrl.create({
       title: 'Current User Logged out',
       buttons:[
