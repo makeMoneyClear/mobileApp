@@ -120,10 +120,13 @@ export class CardsPage {
   }
 
 
-  openEvent(paymentTitle:string, paymentAMmount : string){
+  openEvent(paymentTitle:string, paymentAmount : string, paymentSplit:string, paymentAverage:string, paymentDetails:string){
     this.navCtrl.push(DetailsPage,{
-       passPaymentTille : paymentTitle,
-       passPaymentAmount : paymentAMmount
+       passPaymentTitle : paymentTitle,
+       passPaymentAmount : paymentAmount,
+       passPaymentSplit : paymentSplit,
+       passPaymentAverage: paymentAverage,
+       passPaymentDetails: paymentDetails
     })
 
     // let popover = this.popoverCtrl.create(DetailsPage);

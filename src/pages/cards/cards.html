@@ -54,7 +54,7 @@
   <!--<ion-item *ngFor="let payment of paymentList | async">-->
   <ion-item *ngFor="let payment of paymentList">
     <ion-card>
-      <ion-item  color = "cardTitle" (click)="openEvent(payment.title, payment.amount)">
+      <ion-item  color = "cardTitle" (click)="openEvent( payment.title, payment.amount, payment.split, payment.average, payment.details)">
           <h2>{{payment.title}}</h2>
           <p>Shared Payment : $ {{payment.amount}}</p>
       </ion-item>
@@ -63,7 +63,7 @@
       <ion-row>
         <ion-col center text-center>
           <!--<ion-note>${{event.average}}</ion-note>-->
-          <ion-note>{{payment.average}}</ion-note>
+          <ion-note>$ {{payment.average}}</ion-note>
         </ion-col>
         <ion-col>
           <button ion-button color="primary" clear small icon-right (click)="doPay()">
