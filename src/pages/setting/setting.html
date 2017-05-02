@@ -6,13 +6,31 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>setting</ion-title>
+  <ion-navbar color = "primary">
+    <ion-title>Settings</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <ion-item>
+  <ion-label color = "dark"> Notifications </ion-label>
+  <ion-toggle checked="false" color="danger"></ion-toggle>
+</ion-item>
+
+  <ion-item>
+  <ion-label color="dark"> Password </ion-label>
+  <ion-toggle color="danger" checked="true"></ion-toggle>
+</ion-item>
+
+
+    <ion-item-group>
+      <ion-item></ion-item>
+      <ion-item>User</ion-item>
+      <ion-item>Help</ion-item>
+      <ion-item>About</ion-item>
+      <ion-item>Logout</ion-item>
+    </ion-item-group>
 
 </ion-content>

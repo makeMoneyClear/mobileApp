@@ -59,10 +59,10 @@ export class SignupPage {
 
   confirm():void{
     let prompt = this.alertCtrl.create({
-        title: 'Registration Conformed!',
-        message: 'Welcome to Make The Money Clear',
+        title: 'Registration Confirmed!',
+        message: 'Welcome to Make Money Clear',
         buttons:[{
-          text:"Confirmed",
+          text:"Confirm",
           handler: data=>{
             this.users.push({
               userEmail: data.userEmail,

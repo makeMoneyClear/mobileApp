@@ -2,6 +2,10 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { SignupPage } from '../signup/signup';
 import { HomePage } from '../home/home';
+import { SettingPage } from '../setting/setting';
+import { ContactPage } from '../contact/contact';
+import { CardsPage } from '../cards/cards';
+import { TabsPage } from '../tabs/tabs';
 
 /*
   Generated class for the Login page.
@@ -27,6 +31,21 @@ export class LoginPage {
 
   toHomePage(){
     this.navCtrl.push(HomePage);
+  }
+
+  toSettingPage() {
+    this.navCtrl.push(SettingPage);
+  }
+
+  toContactPage() {
+    this.navCtrl.push(ContactPage);
+  }
+
+  toCardsPage() {
+    this.navCtrl.push(CardsPage);
+  }
+  toTabsPage() {
+    this.navCtrl.push(TabsPage);
   }
 
   ionViewDidLoad() {
