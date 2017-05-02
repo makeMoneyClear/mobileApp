@@ -155,8 +155,8 @@ editBook(book):void{
 
   addPayment():void{
     let confirm = this.alertCtrl.create({
-      title: 'Confirm the payment information?',
-      message:'Ask for {{shareTo}} for {{amount}} in total for {{title}}',
+      title: 'Confirm payment information?',
+      message:'Ask {{shareTo}} for {{amount}} in total for {{title}}',
       buttons:[
         {
           text:'Finish',
