@@ -175,7 +175,6 @@ export class CardsPage {
   }
 
   userLogOut(){
-
     let logOut = this.alertCtrl.create({
       title: 'Current User Logged out',
       buttons:[
@@ -190,11 +189,6 @@ export class CardsPage {
     logOut.present();
   
       this.navCtrl.setRoot(LoginPage);
-    
-    
-
-
-
   }
 
   display(){

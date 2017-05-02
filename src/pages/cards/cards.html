@@ -15,25 +15,19 @@
 
 
 <ion-menu side = "left" [content]="content">
-    
   <ion-content>
     <ion-list>
       <ion-item>
       <ion-avatar item-left>
-        <img src="assets/img/avatar.jpg" height="200" width="200">
+        <img src="assets/img/{{userName}}.jpg" height="200" width="200">
       </ion-avatar>
       <h2>{{userName}}</h2>
-      <p>1 Unpaid Event</p>
      </ion-item>
-      
       <button class = "button" ion-item (click)="launchBalancePage()">
         My Balance
       </button>
       <button class = "button" ion-item (click)="launchSettingPage()">
         Settings
-      </button>
-      <button class = "button" ion-item  ng-click="login()">
-        Switch User
       </button>
       <button class = "button" ion-item (click)="userLogOut();">
         Logout
@@ -41,9 +35,6 @@
     </ion-list>
   </ion-content>
 </ion-menu>
-
-
-
 <ion-nav id="nav" #content [root]="rootPage"></ion-nav>
 
 
