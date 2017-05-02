@@ -31,24 +31,31 @@ export class MyApp {
   firebase.initializeApp(config);
 
   this.rootPage = IntroPage;
+
+ 
   
   // this.rootPage = LoginPage;
 
-  // firebase.auth().onAuthStateChanged((user) => {
-  //   console.log(user);
 
-  //   if (user){
-  //     this.rootPage = TabsPage;
-  //     }else {
-  //     this.rootPage = LoginPage;
-  //   }
-  // });
+
+var p = new Promise(function(resolve, reject) {
+  var observer = function(user) {
+        console.log(user.email);
+        console.log(firebase.auth().currentUser.displayName);
+    // Unsubscribe on first call.
+    unsubscribe();
+    // Resolve with current state.
+    resolve(user);
+  };
+  var unsubscribe = firebase.auth().onAuthStateChanged(observer);
+});
 
   firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
-    console.log(user.email);
+        console.log(user.email);
+        console.log(firebase.auth().currentUser.displayName);
   } else {
-    console.log('no user');
+        console.log('no user');
   }
 });
 

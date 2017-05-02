@@ -1,5 +1,5 @@
-import { Component , NgZone } from '@angular/core';
-import { NavController, ModalController,PopoverController} from 'ionic-angular';
+import { Component , NgZone,ViewChild } from '@angular/core';
+import { NavController, ModalController,PopoverController,Content} from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { BalancePage } from '../balance/balance';
 import { SettingPage } from '../setting/setting';
@@ -17,9 +17,13 @@ import * as firebase from 'firebase';
   templateUrl: 'cards.html',
   providers : [UserService]
 })
+
 export class CardsPage {
+  // @ViewChild(Content)content : Content;
+
   public paymentList =[];
   public userName : any;
+
 
   firestore = firebase.storage();
   // events: FirebaseListObservable<any>;
@@ -63,30 +67,25 @@ export class CardsPage {
   // }
 
   showUserName(){
-     var that = this;
-      this.userService.mUserName.child('userName').once('value',snapshot => {
-        that.userName = snapshot.val();
-         console.log(that.userName);
-        })
+      this.userName = this.userService.currentUser.displayName;
+
   }
 
-<<<<<<< HEAD
      showPayment():any {
-||||||| merged common ancestors
-     showPayment(){
-=======
-     showPayment(): any{
->>>>>>> 7663c476af9f073667918dc8026937df07567f71
+     this.paymentList = [];
       var that = this;
       this.userService.paymentEvent.once('value',function(snapshot) {
         snapshot.forEach(function(childSnapshot){
           that.paymentList.push(childSnapshot.val());
           var keys = childSnapshot.key;
-         console.log(that.paymentList);
+         console.log(that.paymentList[0].title);
          console.log(keys);
         })
 
-    })
+    }
+    );
+    // this.content.resize();
+    // this.navCtrl.setRoot(this.navCtrl.getActive().component);
   }
 
 

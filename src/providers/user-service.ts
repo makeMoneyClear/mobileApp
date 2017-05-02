@@ -35,18 +35,20 @@ export class UserService {
   public contact: any;
   public mUserName : any;
   public currentUser = firebase.auth().currentUser;
-  public currentUserName = this.currentUser.displayName;
   public myUserId =  firebase.auth().currentUser.uid;
   public storageRef : any;
+
   constructor(public http: Http) {
     this.fireAuth = firebase.auth();
     this.userProfile = firebase.database().ref('users');
-    this.paymentEvent = firebase.database().ref('users/'+this.currentUserName+'/idInfro').child('paymentInfo');
-    this.contact = firebase.database().ref('users/'+this.currentUserName+'/idInfro').child('contactBook');
-    this.mUserName = firebase.database().ref('users/'+this.currentUserName+'/idInfro');
+    this.paymentEvent = firebase.database().ref('users/').child(this.currentUser.displayName).child('paymentInfo');
+    this.contact = firebase.database().ref('users/').child(this.currentUser.displayName).child('contactBook');
+    this.mUserName = firebase.database().ref('users/').child(this.currentUser.displayName);
     this.storageRef = firebase.storage().ref();
 
+
   }
+
 
 
   // return this.contact.child(group).child(name).update({
@@ -77,75 +79,68 @@ export class UserService {
 //   })
 // }
 
-  signUpUser(email:string,password:string,name:string){
-    console.log('processing user sign up');
-    console.log (email);
-    console.log (password);
-    console.log (name);
-    
-  var that = this;
-    return this.fireAuth.createUserWithEmailAndPassword(email,password)
-    
-      .then((newUserCreated)=>{
-        this.fireAuth.signInWithEmailAndPassword(email,password)
-        .then((authenticatedUser)=>{
+      registerPasswordUser(email:string,displayName:string,password:string):any{
+        var that = this;
+          var user = null;
+          //nullify empty arguments
+          for (var i = 0; i < arguments.length; i++) {
+            arguments[i] = arguments[i] ? arguments[i] : null;
+          }
 
-          console.log('processing user sign up yo pass the data to database');
-          console.log(authenticatedUser.uid);
-          console.log(that.currentUser.displayName);
-          // this.userProfile.child(authenticatedUser.email).set({
-
-          that.currentUser.updateProfile({
-            displayName: name,
-            photoURL: "https://example.com/jane-q-user/profile.jpg"
-          }).then(function() {
-            console.log('user name set');
-            console.log(that.currentUser.displayName);
-
-            console.log(that.currentUser.displayName);
-           that.userProfile.child(that.currentUser.displayName).child('idInfro').set({
-            uid : authenticatedUser.uid,
-            email : email,
-            name : name
-            // Update successful.
-          }, function(error) {
-            // An error happened.
+          firebase.auth().createUserWithEmailAndPassword(email, password)
+          .then(function () {
+            user = firebase.auth().currentUser;
+            user.sendEmailVerification();
+          })
+          .then(function () {
+            user.updateProfile({
+              displayName: displayName,
+              photoURL: null
+            });
+          }).then(() => {
+            console.log(displayName);
+            console.log('display name success');
+            
+          }).then(function () {
+            that.userProfile.child(displayName).child('idInfro').set({
+              name : displayName,
+              email : email
+            });
+          }).catch(function(error) {
+            console.log(error.message);
           });
+          console.log('Validation link was sent to ' + email + '.');
+      }
 
-          // console.log(that.currentUserName);
-          //  that.userProfile.child(that.currentUserName).set({
-          //   uid : authenticatedUser.uid,
-          //   email : email,
-          //   name : name
-          // })
-          // console.log('lalalalalalalal');
-      })
-  })
-  })}
+ try(){
+      console.log(this.currentUser.displayName);
+    this.mUserName.child("alanisawesome").set({
+      date_of_birth: "June 23, 1912",
+      full_name: "Alan Turing"
+    });
+ }
 
-
-
-// uploadImg(){
-//   var filename = Math.floor(Date.now()/1000);
-//   var imageRef = this.storageRef.child(`images${filename}.jpg`);
-//   imageRef.putString(HomePage.base64Image, )
-// }
-
-//  writeUserData(userId, name, email, imageUrl) {
-//   firebase.database().ref('users/' + userId).set({
-//     username: name,
-//     email: email,
-//     profile_picture : imageUrl
-//   });
-// }
-
-// downloadRoommateContactInfo():any{
-//   var contact = this.contact.child('roommate');
-//   contact.on('value');
-// }
 
 
  loadPaymentInfo(title1:string, amount1:string, shareTo1:string, details1:string, split1:string, average1:string):any{
+var paymentEvent = firebase.database().ref('users/').child(this.currentUser.displayName).child('paymentInfo');
+   console.log(this.paymentEvent.key);
+
+  return this.paymentEvent.push({
+      title:title1,
+      amount:amount1,
+      split:split1,
+      shareTo:shareTo1,
+      details:details1,
+      average:average1
+  });
+ }
+
+  loadPaymentInfoShareTo(title1:string, amount1:string, shareTo1:string, details1:string, split1:string, average1:string):any{
+    console.log('triggered load payment shareTo');
+    console.log(shareTo1);
+  var paymentEvent = firebase.database().ref('users/').child(shareTo1).child('paymentInfo');
+   console.log(this.paymentEvent.key);
 
   return this.paymentEvent.push({
       title:title1,
@@ -159,24 +154,12 @@ export class UserService {
 
 
  loadContactInfo(group:string, name:string, other:string):any{
-   
+  var contact = firebase.database().ref('users/').child(this.currentUser.displayName).child('contactBook');
   return this.contact.child(group).child(name).update({
    name : name,
    other: other
   });
 }
-
-//   createPayment(title:string,amount:string,shareTo:string,details:string){
-//     return this.fireAuth.createUserWithEmailAndPassword(email,password)
-//       .then((newUserCreated)=>{
-//         this.fireAuth.signInWithEmailAndPassword(email,password)
-//         .then((authenticatedUser)=>{
-//           this.userProfile.child(authenticatedUser.uid).set({
-//             email:email
-//           })
-//       })
-//   })
-// }
 
   loginUser (email:string,password:string):any{
     return this.fireAuth.signInWithEmailAndPassword(email,password);
@@ -208,10 +191,46 @@ export class UserService {
         })
     })
 
-  }
+
+
+
+// uploadImg(){
+//   var filename = Math.floor(Date.now()/1000);
+//   var imageRef = this.storageRef.child(`images${filename}.jpg`);
+//   imageRef.putString(HomePage.base64Image, )
+// }
+
+//  writeUserData(userId, name, email, imageUrl) {
+//   firebase.database().ref('users/' + userId).set({
+//     username: name,
+//     email: email,
+//     profile_picture : imageUrl
+//   });
+// }
+
+// downloadRoommateContactInfo():any{
+//   var contact = this.contact.child('roommate');
+//   contact.on('value');
+// }
+
+
+
+
+//   createPayment(title:string,amount:string,shareTo:string,details:string){
+//     return this.fireAuth.createUserWithEmailAndPassword(email,password)
+//       .then((newUserCreated)=>{
+//         this.fireAuth.signInWithEmailAndPassword(email,password)
+//         .then((authenticatedUser)=>{
+//           this.userProfile.child(authenticatedUser.uid).set({
+//             email:email
+//           })
+//       })
+//   })
+// }
 
   }
 
 
 
 
+}

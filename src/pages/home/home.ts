@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController, AlertController } from 'ionic-angular';
+import { Component, ErrorHandler } from '@angular/core';
+import { NavController, AlertController, IonicApp,IonicModule,IonicErrorHandler } from 'ionic-angular';
 import { Camera } from 'ionic-native';
 import { UserService } from '../../providers/user-service';
 import { CardsPage } from '../cards/cards';
@@ -64,6 +64,7 @@ export class HomePage {
       })
     });}
 
+
   uploadImg(){
     let storageRef =  firebase.storage().ref();
     const filename = this.title;
@@ -97,18 +98,37 @@ export class HomePage {
 // // var httpsReference = storage.refFromURL('https://firebasestorage.googleapis.com/b/bucket/o/images%20stars.jpg');
 // }
 
+
    createPayment(){
-<<<<<<< HEAD
-     var that = this;
-     this.userService.loadPaymentInfo(this.title,this.amount,this.shareTo,this.details)
-||||||| merged common ancestors
-     this.userService.loadPaymentInfo(this.title,this.amount,this.shareTo,this.details)
-=======
     var that = this;
      this.average = (parseInt(this.amount)/parseInt(this.split)).toFixed(2);
      this.userService.loadPaymentInfo(this.title,this.amount,this.shareTo,this.details,this.split,this.average)
->>>>>>> 7663c476af9f073667918dc8026937df07567f71
-      .then(paymentData =>{
+      .then((paymentData) =>{
+
+        that.contactList.forEach((item)=>{
+          console.log(item);
+          console.log(that.shareTo);
+          //  expect(item).toEqual(that.shareTo);
+
+          // it('hahahaha',()=>{
+          //   expect
+
+          // })
+
+          if (item.valueOf() == that.shareTo.valueOf()){
+            console.log(item.valueOf());
+            console.log(that.shareTo.valueOf());
+
+            // this.userService.loadPaymentInfoShareTo(that.title,that.amount,that.shareTo,that.details,that.split,that.average).then(()=>{
+            //     console.log('share succeed');
+            // })
+
+
+          }else{
+            console.log('No equal shareTo');
+          }
+        })
+        
         let successAlert = this.alertCtrl.create({
           title:'New payment event created',
           buttons:['Great!']
@@ -119,21 +139,7 @@ export class HomePage {
         this.split = '';
         this.shareTo = '';
         this.details = '';
-<<<<<<< HEAD
-        // that.cardPage.paymentList = [];
-        // that.cardPage.showPayment().then(console.log('tiiii'));
-        
-||||||| merged common ancestors
-=======
         this.average = '';
-
-        // that.cardPage.paymentList = [];
-        // that.cardPage.showPayment().then(()=>{
-        //   console.log('triggered');
-        // });
-
-
->>>>>>> 7663c476af9f073667918dc8026937df07567f71
         
       },error =>{
         let alert = this.alertCtrl.create({
@@ -143,6 +149,11 @@ export class HomePage {
         })
         alert.present();
         // alert("error logging in:" + error.message);
+      }).then(()=>{
+          this.userService.loadPaymentInfoShareTo(that.title,that.amount,that.shareTo,that.details,that.split,that.average).then(()=>{
+                console.log('share succeed');
+            })
+
       });
 
    }

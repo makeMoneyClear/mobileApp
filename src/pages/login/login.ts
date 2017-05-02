@@ -45,7 +45,7 @@ export class LoginPage {
                 
 
   userSignUp(){
-    this.userService.signUpUser(this.emailField,this.passwordField,this.nameField)
+    this.userService.registerPasswordUser(this.emailField,this.nameField,this.passwordField)
       .then(authData =>{
         let alert =  this.alertCtrl.create({
           title:'Sign up succeeded',
