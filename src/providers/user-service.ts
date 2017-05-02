@@ -3,7 +3,6 @@ import { Http } from '@angular/http';
 // import { HomePage } from '../pages/home/home';
 import 'rxjs/add/operator/map';
 import * as firebase from 'firebase';
-
 /*
   Generated class for the UserService provider.
 
@@ -11,6 +10,7 @@ import * as firebase from 'firebase';
   for more info on providers and Angular 2 DI.
 */
 @Injectable()
+
 export class UserService {
   // private data : any;
   // public fireAuth: any;
@@ -123,6 +123,7 @@ export class UserService {
 
 
  loadPaymentInfo(title1:string, amount1:string, shareTo1:string, details1:string, split1:string, average1:string):any{
+       console.log(shareTo1);
 var paymentEvent = firebase.database().ref('users/').child(this.currentUser.displayName).child('paymentInfo');
    console.log(this.paymentEvent.key);
 

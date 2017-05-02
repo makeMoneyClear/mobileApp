@@ -174,7 +174,7 @@ export class CardsPage {
   userLogOut(){
 
     let logOut = this.alertCtrl.create({
-      title: 'Current User Loged out',
+      title: 'Current User Logged out',
       buttons:[
         {
           text:'OK',

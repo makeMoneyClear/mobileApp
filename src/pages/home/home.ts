@@ -13,7 +13,7 @@ import * as firebase from 'firebase';
 @Component({
   selector:'page-home',
   templateUrl: 'home.html',
-  providers : [UserService, CardsPage]
+  providers : [UserService]
 })
 export class HomePage {
   public base64Image: string;
@@ -45,7 +45,7 @@ export class HomePage {
   // constructor(public navCtrl: NavController, public  alertCtrl: AlertController, public angFire:AngularFire) { 
     // this.payment = angFire.database.list('/Payment');
 
-  constructor(private cardPage : CardsPage, private userService: UserService,public navCtrl: NavController, public  alertCtrl: AlertController) { 
+  constructor(private userService: UserService,public navCtrl: NavController, public  alertCtrl: AlertController) { 
     this.showContact();
 
     
@@ -105,30 +105,25 @@ export class HomePage {
      this.userService.loadPaymentInfo(this.title,this.amount,this.shareTo,this.details,this.split,this.average)
       .then((paymentData) =>{
 
-        that.contactList.forEach((item)=>{
-          console.log(item);
-          console.log(that.shareTo);
-          //  expect(item).toEqual(that.shareTo);
+            that.contactList.forEach((item)=>{
+              console.log(item);
+              console.log(that.shareTo);
 
-          // it('hahahaha',()=>{
-          //   expect
+              if (item.valueOf() == that.shareTo.valueOf()){
+                console.log(item.valueOf());
+                console.log(that.shareTo.valueOf());
 
-          // })
-
-          if (item.valueOf() == that.shareTo.valueOf()){
-            console.log(item.valueOf());
-            console.log(that.shareTo.valueOf());
-
-            // this.userService.loadPaymentInfoShareTo(that.title,that.amount,that.shareTo,that.details,that.split,that.average).then(()=>{
-            //     console.log('share succeed');
-            // })
+                // this.userService.loadPaymentInfoShareTo(that.title,that.amount,that.shareTo,that.details,that.split,that.average).then(()=>{
+                //     console.log('share succeed');
+                // })
 
 
-          }else{
-            console.log('No equal shareTo');
-          }
-        })
-        
+              }else{
+                console.log('No equal shareTo');
+              }
+            })
+
+
         let successAlert = this.alertCtrl.create({
           title:'New payment event created',
           buttons:['Great!']
@@ -140,7 +135,10 @@ export class HomePage {
         this.shareTo = '';
         this.details = '';
         this.average = '';
-        
+        // that.cardPage.paymentList = [];
+        // that.cardPage.showPayment().then(()=>{
+        //   console.log('triggered');
+        // });
       },error =>{
         let alert = this.alertCtrl.create({
           title:'Error creating new payment event',
@@ -149,8 +147,9 @@ export class HomePage {
         })
         alert.present();
         // alert("error logging in:" + error.message);
-      }).then(()=>{
+      }).then((paymentData)=>{
           this.userService.loadPaymentInfoShareTo(that.title,that.amount,that.shareTo,that.details,that.split,that.average).then(()=>{
+             console.log(that.shareTo);
                 console.log('share succeed');
             })
 
