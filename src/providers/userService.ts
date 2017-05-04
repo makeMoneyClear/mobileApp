@@ -123,11 +123,11 @@ export class UserService {
 
 
  loadPaymentInfo(title1:string, amount1:string, shareTo1:string, details1:string, split1:string, average1:string):any{
-       console.log(shareTo1);
+       console.log(title1);
 var paymentEvent = firebase.database().ref('users/').child(this.currentUser.displayName).child('paymentInfo');
    console.log(this.paymentEvent.key);
 
-  return this.paymentEvent.push({
+  return paymentEvent.push({
       title:title1,
       amount:amount1,
       split:split1,
@@ -142,8 +142,7 @@ var paymentEvent = firebase.database().ref('users/').child(this.currentUser.disp
     console.log(shareTo1);
       var paymentEvent = firebase.database().ref('users/').child(shareTo1).child('paymentInfo');
    console.log(this.paymentEvent.key);
-
-        return this.paymentEvent.push({
+        return paymentEvent.push({
             title:title1,
             amount:amount1,
             split:split1,
@@ -151,6 +150,7 @@ var paymentEvent = firebase.database().ref('users/').child(this.currentUser.disp
             details:details1,
             average:average1
         });
+      
  }
 
 

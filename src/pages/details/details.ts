@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { AngularFire, FirebaseListObservable} from 'angularfire2';
 import { CardsPage } from '../cards/cards'
-import { UserService } from '../../providers/user-service';
+import { UserService } from '../../providers/userService';
 /*
   Generated class for the Details page.
 

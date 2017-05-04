@@ -1,7 +1,7 @@
 import { Component, ErrorHandler } from '@angular/core';
 import { NavController, AlertController, IonicApp,IonicModule,IonicErrorHandler } from 'ionic-angular';
 import { Camera } from 'ionic-native';
-import { UserService } from '../../providers/user-service';
+import { UserService } from '../../providers/userService';
 import { CardsPage } from '../cards/cards';
 // import { ContactPage } from '../contact/contact';
 // import { AngularFire,FirebaseListObservable} from'angularfire2';
@@ -27,6 +27,7 @@ export class HomePage {
   public picture : any;
   public contactList = [];
   public chickedContactList = [];
+  public peopleShareTo : any;
 
   constructor(private userService: UserService,public navCtrl: NavController, public  alertCtrl: AlertController) { 
     this.showContact();
@@ -85,7 +86,10 @@ export class HomePage {
    createPayment(){
     var that = this;
      this.average = (parseInt(this.amount)/parseInt(this.split)).toFixed(2);
-     this.userService.loadPaymentInfo(this.title,this.amount,this.shareTo,this.details,this.split,this.average)
+     console.log("right here");
+     console.log(that.shareTo);
+     
+      this.userService.loadPaymentInfo(this.title,this.amount, this.shareTo,this.details, this.split,this.average)
       .then((paymentData) =>{
 
             that.contactList.forEach((item)=>{
@@ -93,16 +97,13 @@ export class HomePage {
               console.log(that.shareTo);
 
               if (item.valueOf() == that.shareTo.valueOf()){
+
                 console.log(that.shareTo.valueOf());
-
-                // this.userService.loadPaymentInfoShareTo(that.title,that.amount,that.shareTo,that.details,that.split,that.average).then(()=>{
-                    console.log('user matched');                
+                  console.log('user matched');                
                     console.log(item.valueOf());
+                    this.peopleShareTo = that.shareTo;
 
-                // })
-
-
-              }else{
+             }else{
                 console.log('No equal shareTo');
               }
             })
@@ -113,12 +114,6 @@ export class HomePage {
           buttons:['Great!']
         })
         successAlert.present();
-        this.title = '';
-        this.amount = '';
-        this.split = '';
-        this.shareTo = '';
-        this.details = '';
-        this.average = '';
         // that.cardPage.paymentList = [];
         // that.cardPage.showPayment().then(()=>{
         //   console.log('triggered');
@@ -132,9 +127,15 @@ export class HomePage {
         alert.present();
         // alert("error logging in:" + error.message);
       }).then(() => {
-          this.userService.loadPaymentInfoShareTo(that.title,that.amount,that.shareTo,that.details,that.split,that.average).then(()=>{
-             console.log(that.shareTo);
+          this.userService.loadPaymentInfoShareTo(that.title,that.amount,that.peopleShareTo,that.details,that.split,that.average).then(()=>{
+             console.log(that.peopleShareTo);
                 console.log('share succeed');
+                this.title = '';
+                this.amount = '';
+                this.split = '';
+                this.shareTo = '';
+                this.details = '';
+                this.average = '';
             })
 
       });

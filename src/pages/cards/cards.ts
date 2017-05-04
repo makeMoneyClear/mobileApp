@@ -1,10 +1,10 @@
 import { Component , NgZone,ViewChild } from '@angular/core';
 import { NavController, ModalController,PopoverController,Content} from 'ionic-angular';
-import { AlertController } from 'ionic-angular';
+import { AlertController,App } from 'ionic-angular';
 import { BalancePage } from '../balance/balance';
 import { SettingPage } from '../setting/setting';
 import { AngularFire, FirebaseListObservable} from 'angularfire2';
-import { UserService } from '../../providers/user-service';
+import { UserService } from '../../providers/userService';
 import { LoginPage } from '../login/login';
 // import { DetailPage } from '../pages/detail/detail';
 import { DetailsPage } from '../details/details';
@@ -29,7 +29,7 @@ export class CardsPage {
   // events: FirebaseListObservable<any>;
   imgsource: any;
 
-  constructor(public popoverCtrl: PopoverController,private userService: UserService,public navCtrl: NavController, public alertCtrl: AlertController, public modalCtrl: ModalController, angFire: AngularFire, public zone: NgZone) {
+  constructor(public app: App,public popoverCtrl: PopoverController,private userService: UserService,public navCtrl: NavController, public alertCtrl: AlertController, public modalCtrl: ModalController, angFire: AngularFire, public zone: NgZone) {
     // this.events = angFire.database.list('/Events');
     
     this.showPayment();
@@ -165,7 +165,7 @@ export class CardsPage {
     });
     logOut.present();
   
-      this.navCtrl.setRoot(LoginPage);
+       this.app.getRootNav().setRoot(LoginPage);
   }
 
   display(){

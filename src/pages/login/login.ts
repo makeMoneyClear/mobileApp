@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams,LoadingController,AlertController,ModalController } from 'ionic-angular';
+import { NavController, NavParams,LoadingController,AlertController,ModalController,App } from 'ionic-angular';
 import { SignupPage } from '../signup/signup';
-import { UserService } from '../../providers/user-service';
+import { UserService } from '../../providers/userService';
 import { CardsPage } from '../cards/cards';
 import { TabsPage } from '../tabs/tabs';
+
 
 /*
   Generated class for the Login page.
@@ -24,7 +25,7 @@ export class LoginPage {
   private usersList : any;
 
 
-  constructor(private modalCtrl : ModalController, private alertCtrl:AlertController ,public navCtrl: NavController, public navParams: NavParams,private userService: UserService,private loadingCtrl:LoadingController) {
+  constructor(public app : App, private modalCtrl : ModalController, private alertCtrl:AlertController ,public navCtrl: NavController, public navParams: NavParams,private userService: UserService,private loadingCtrl:LoadingController) {
     this.emailField = "@illinois.edu";
     // this.listUsers();
     }
@@ -53,10 +54,7 @@ export class LoginPage {
         })   
         alert.present(); 
 
-        let lead = this.modalCtrl.create(TabsPage);
-        lead.present();
-        //successful
-        // this.navCtrl.push(TabsPage);
+        this.app.getRootNav().setRoot(TabsPage);
       },error =>{
         let alert =  this.alertCtrl.create({
           title:'Sign up failed',
@@ -77,10 +75,8 @@ export class LoginPage {
   doLogIn(){
      this.userService.loginUser(this.emailField,this.passwordField)
       .then(authData =>{
-        //successful
-        // let leadToTabsPage = this.modalCtrl.create(TabsPage);
-        // leadToTabsPage.present();
-        this.navCtrl.setRoot(TabsPage);
+        this.app.getRootNav().setRoot(TabsPage);
+        console.log("change to tab page");
       },error =>{
         let alert = this.alertCtrl.create({
           title:'Error logging in',
@@ -97,9 +93,6 @@ export class LoginPage {
 
   }
     
-  // toSignUp(){
-  //   this.navCtrl.push(SignupPage);
-  // }
 
   forgotPassword(){
     let prompt = this.alertCtrl.create({

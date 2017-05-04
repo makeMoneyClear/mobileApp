@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UserService } from '../../providers/user-service';
+import { UserService } from '../../providers/userService';
 import { AngularFire, FirebaseListObservable} from 'angularfire2';
 import { NavController, AlertController } from 'ionic-angular';
 

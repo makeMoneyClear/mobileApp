@@ -14,9 +14,6 @@ import * as firebase from 'firebase';
 })
 export class MyApp {
   public rootPage: any; 
-
-  
-
   constructor(platform: Platform) {
 
       // Initialize Firebase
@@ -28,7 +25,6 @@ export class MyApp {
     storageBucket: "makethemoneyclear.appspot.com",
     messagingSenderId: "840233556621"
   };
-  firebase.initializeApp(config);
 
   this.rootPage = IntroPage;
 
@@ -37,18 +33,8 @@ export class MyApp {
   // this.rootPage = LoginPage;
 
 
+  firebase.initializeApp(config);
 
-var p = new Promise(function(resolve, reject) {
-  var observer = function(user) {
-        console.log(user.email);
-        console.log(firebase.auth().currentUser.displayName);
-    // Unsubscribe on first call.
-    unsubscribe();
-    // Resolve with current state.
-    resolve(user);
-  };
-  var unsubscribe = firebase.auth().onAuthStateChanged(observer);
-});
 
   firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
@@ -59,6 +45,19 @@ var p = new Promise(function(resolve, reject) {
   }
 });
 
+var p = new Promise(function(resolve, reject) {
+  var observer = function(user) {
+        console.log(user.email);
+        console.log(firebase.auth().currentUser.displayName);
+    // Unsubscribe on first call.
+    unsubscribe();
+    // Resolve with current state.
+    resolve(user);
+  };
+
+  
+  var unsubscribe = firebase.auth().onAuthStateChanged(observer);
+});
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
